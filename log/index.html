@@ -1,0 +1,305 @@
+<html>
+<head>
+	<title>日志分析工具</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<meta content="always" name="referrer">
+	<meta name="theme-color" content="#2932e1">
+	<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">    
+	
+	<!--
+	<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+	-->
+	<script src="./js/jquery-1.11.3/jquery.min.js"></script>
+	
+	<style type="text/css">
+	pre, xmp, plaintext, listing {
+		margin: 0em 0px;
+	}
+	.log-display {
+		display: block;
+		word-break: break-all;
+		word-wrap: break-word;
+		color: #555;
+		background-color: #f8f8f8;
+		overflow:scroll;
+		float:left;
+		border: 1px solid #dedede;
+		border-radius: 0;
+		margin-left: 10px;
+		height:100%;
+	}
+	.log-text-lineNO {
+		color: gray;
+	}
+	.log-text-time {
+		color: #5eb95e;
+	}
+	.log-text-level {
+		color: #dd514c;
+	}
+	.log-text-pre {
+		color: #dd51ff;
+	}
+	.log-text-context {
+		padding-right: 20px;
+	}
+	</style>
+	
+	<script type="text/javascript">
+	
+	String.prototype.replaceAll = function (FindText, RepText) {
+		regExp = new RegExp(FindText, "g");
+		return this.replace(regExp, RepText);
+	}
+
+	String.prototype.startWith=function(str){
+		var reg=new RegExp("^"+str);
+		return reg.test(this);
+	}
+	
+	//单行日志渲染
+	var lineStaticStr = '<span class="lineSP" id="#TIME#"><span class="log-text-lineNO">#LINENO#:</span> <span class="log-text-time">#TIME#</span> <span class="log-text-level">#LEVEL#</span> <span class="log-text-pre">#PRE#</span> <span class="log-text-context">#CONTEXT#</span></span>'; 
+	
+	function replaceData(arr, i){
+	    var result = lineStaticStr.replaceAll('#LINENO#', (i+1)).replaceAll('#TIME#', arr[i].time).replaceAll('#LEVEL#', arr[i].level).replaceAll('#PRE#', arr[i].pre).replaceAll('#CONTEXT#', arr[i].context);
+		result += "<br/>";
+		return result;
+	}
+	//格式化单行日志数据
+	function formatData(arr){
+		var result = "";
+		var lastTimeStr = "";
+		var flag = true;
+		for(var i=0; i< arr.length; i++){
+			var lineData = arr[i];
+			var timeStr = lineData.time.substring(0,16);
+			
+			var sss = "style='background-color:"+ (flag?"orange":"yellow") +"' ";
+			sss = " ";
+			
+			if(lastTimeStr=="" ){
+				result += "<a name='" + timeStr + "' class='md' " + sss + ">";
+				result += replaceData(arr, i);
+				
+				lastTimeStr = timeStr;
+				
+				flag = !flag;
+			}else if(lastTimeStr.startWith(timeStr)){
+				result += replaceData(arr, i);
+			}else{
+				lastTimeStr = timeStr;
+				
+				result += "<a name='" + timeStr + "' class='md' " + sss + ">";
+				result += replaceData(arr, i);
+				
+				flag = !flag;
+			}
+			if(i==(arr.length-1)){
+				result += "</a>";
+			}
+		}
+		return result;
+	};
+	
+	//单页显示日志个数
+	var logFileCount = 2;
+	
+	//日志联动开关
+	var logScrollFlag = true;
+	
+	//单行日志渲染
+	var oneStaticDiv = '<div id="log_display_#INDEX#" class="log-display" style="width:#WIDTH#;" onscroll="funcsrcoll(this, #COUNT#)"><pre></pre></div>'; 
+	function initPriviewDIV(count){
+		$("#logPriview").empty();
+		var wh = ($('#logPriview').width() - (count+2)*10)/count + "px";
+		for(var i=0; i<count;i++){
+			var lineDemicDiv = oneStaticDiv.replace('#INDEX#', i+1).replace('#WIDTH#', wh).replace('#COUNT#', count);
+			$("#logPriview").append(lineDemicDiv);
+		}
+	}
+	// div 滚动监听
+	function funcsrcoll(obj, count)
+	{
+	    var idx =  parseInt(obj.id.split('log_display_')[1]);
+		if(logScrollFlag && idx<count){
+			const ac = document.querySelector('#logPriview');
+			const lc = ac.querySelector('#log_display_' + idx);
+			const rc = ac.querySelector('#log_display_' + (idx+1))
+			
+			const rc0 = rc.querySelector(".lineSP");
+			
+			var toped_elmt = getTopedElement(lc);
+			if(toped_elmt && toped_elmt.id){
+				var near_elmt = getNearElement(rc, toped_elmt.id);
+				if(near_elmt){
+					var right_st = near_elmt.offsetTop;
+					if(near_elmt.id!=rc0.id){
+						right_st -= rc0.offsetTop;
+						rc.scrollTop =  right_st;
+					}
+				}
+			}
+		}
+	}
+
+	function getTopedElement(searchObj)
+	{
+		var search_arr = searchObj.querySelectorAll(".lineSP");
+		
+		var ssTop = searchObj.scrollTop;
+		var topedSP = null;
+		for(var i = 0; i<search_arr.length; i++)
+		{
+			if(ssTop < search_arr[i].offsetTop){
+				ssTop = search_arr[i].offsetTop;
+				//topedSP = search_arr[i];
+				continue;
+			}else{
+				topedSP = search_arr[i+1];
+				//break;
+			}
+		}
+		return topedSP;
+	}
+	
+	// 根据时间点获取最接近的元素(根据模糊匹配的时间字符串查找,在结果中根据校对值查找最接近的元素)
+	// rightObj      模糊匹配的父节点对象
+	// timeStr       时间字符串
+	function getNearElement(searchObj, timeStr)
+	{
+		
+        /* 根据级别获取要模糊查找的时间字符串 */
+	    function getSearchStr(timeStr, level){
+		    var search_end_idx = 0;
+			switch(level){
+				case 0:
+					search_end_idx = 20;
+					break;
+				case 1:
+					search_end_idx = 17;
+					break;
+				case 2:
+					search_end_idx = 14;
+					break;
+				case 3:
+					search_end_idx = 11;
+					break;
+				case 4:
+					search_end_idx = 8;
+					break;
+				case 5:
+					search_end_idx = 5;
+					break;
+				default:
+					search_end_idx = 0;
+			}
+			return timeStr.substring(0, search_end_idx);
+		}
+		/* 根据级别获取要比对接近查找的时间数字 */
+		function getCompareNumber(timeStr, level){
+		    var search_start_idx = 0;
+		    var search_end_idx = timeStr.length-1;
+			switch(level){
+				case 0:
+					search_start_idx = 20;
+					search_end_idx = 23;
+					break;
+				case 1:
+					search_start_idx = 17;
+					search_end_idx = 19;
+					break;
+				case 2:
+					search_start_idx = 14;
+					search_end_idx = 16;
+					break;
+				case 3:
+					search_start_idx = 11;
+					search_end_idx = 13;
+					break;
+				case 4:
+					search_start_idx = 8;
+					search_end_idx = 10;
+					break;
+				case 5:
+					search_start_idx = 5;
+					search_end_idx = 7;
+					break;
+				default:
+					search_start_idx = 0;
+					search_end_idx = timeStr.length;
+			}
+			var sub_str = timeStr.substring(search_start_idx, search_end_idx);
+			return Number(sub_str);
+		}
+		/* 模糊查找,返回对应的最接近的元素 */
+		function searchByTimeStr(searchObj, timeStr, level){
+		    var activeElmt = null;
+			
+		    var search_str = getSearchStr(timeStr, level);
+		    var compare_int = getCompareNumber(timeStr, level);
+			var queryResult_arr = searchObj.querySelectorAll("span[id^='"+ search_str +"']");
+			for(var i = 0; i < queryResult_arr.length; i++)
+			{
+				var one_compare_int = getCompareNumber(queryResult_arr[i]["id"], level);
+				if( one_compare_int > compare_int){
+				    var _one_index = (i>0?(i-1):0);
+					activeElmt = queryResult_arr[_one_index];
+					break;
+				}
+			}
+			return activeElmt;
+		}
+	    
+	    var result = null;
+		// 查找级别lvl(0:毫秒; 1:秒; 2:分钟; 3:小时; 4:条; 5:月;)
+		for(var lvl=0; lvl < 6; lvl++){
+			result = searchByTimeStr(searchObj, timeStr, lvl);
+			if(result){
+				break;
+			}
+		}
+		return result;
+	}
+
+	// 日志读取
+	function loadPriviewData(count)
+	{
+		for(var j=0; j<count;j++){
+			$.ajax({
+			  url: "./data/log"+(j+1)+".json",  //读取文件
+			  dataType: 'html',
+			  data: {},
+			  success: function (result) {
+				var resultJSON = jQuery.parseJSON(result);
+				
+				$("#log_display_"+(resultJSON.index)+" pre").append(formatData(resultJSON.data));
+				
+				var idx = resultJSON.index;
+				var aa = $("#log_display_"+(resultJSON.index));
+			  },
+			});
+		}
+	}
+	
+	$(function () {
+	    
+		initPriviewDIV(logFileCount);
+		loadPriviewData(logFileCount);
+		
+		$("#logSettings input:checkbox").on("click",function(){
+			$(".log-text-" + $(this).val()).css("display", $(this).prop("checked")?'unset':'none');
+		});
+	});
+	</script>
+</head>
+<body>
+	<div id="logPriview" style="width:100%;height:700px;"></div>
+	<div id="logSettings">
+		<input type="checkbox" name="时间" value="time" checked disabled><span>时间<span>
+		<input type="checkbox" name="级别" value="level" checked><span>级别<span>
+		<input type="checkbox" name="前缀" value="pre" checked><span>前缀<span>
+		<input type="checkbox" name="正文" value="context" checked><span>正文<span>
+	</div>
+</body>
+</html>
