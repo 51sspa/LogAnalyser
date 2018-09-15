@@ -20,17 +20,40 @@ public class LogReader {
 	private static final Logger logger = Logger.getLogger(LogReader.class);
 	private RandomAccessFile sourcee;
 	private LogPattern pattern;
+	//未匹配到日志模式时继续搜寻的行数，超出后仍未找到的话就终止返回， 后期加上这个特性
+	private static final int DEFAUTL_BREAK_SEARCH_NUM = 100;
 
+	/**
+	 * 
+	 * @param filePath  要读取的日志文件
+	 * @param logPattern 日志文件的命名正则表达式，目前支持的命名参考 {@link LogPattern}
+	 * 日志中打印时间的输出格式, 默认为 yyyy-MM-dd hh:mm:ss 参考  LogPattern.DAFAULT_DATE_PATTERN,
+	 * 日志中日期的locale, 默认为系统当前Locale
+	 */
 	public LogReader(String filePath, String logPattern)
 	{
 		this(filePath, logPattern, null, null);
 	}
 
+	/**
+	 * 
+	 * @param filePath    要读取的日志文件
+	 * @param logPattern  日志文件的命名正则表达式，目前支持的命名参考 {@link LogPattern}
+	 * @param datePattern 日志中打印时间的输出格式, 默认为 yyyy-MM-dd hh:mm:ss 参考  LogPattern.DAFAULT_DATE_PATTERN,
+	 *                    日志中日期的locale, 默认为系统当前Locale
+	 */
 	public LogReader(String filePath, String logPattern, String datePattern)
 	{
 		this(filePath, logPattern, datePattern, null);
 	}
 	
+	/**
+	 * 
+	 * @param filePath    要读取的日志文件
+	 * @param logPattern  日志文件的命名正则表达式，目前支持的命名参考 {@link LogPattern}
+	 * @param datePattern 日志中打印时间的输出格式 , 默认为 yyyy-MM-dd hh:mm:ss 参考  LogPattern.DAFAULT_DATE_PATTERN
+	 * @param dateLocale  日志中日期的locale, 默认为系统当前Locale
+	 */
 	public LogReader(String filePath, String logPattern, String datePattern, String dateLocale)
 	{
 		try {
@@ -54,7 +77,7 @@ public class LogReader {
 			Log current = null;
 			StringBuilder preContent = new StringBuilder();
 			
-			for(int i = 0; i < limit; i++)
+			for(int i = 0; i <= limit; i++)
 			{
 				current = this.readLine(preContent);
 				if(pre !=null && preContent.length() > 0)
@@ -75,6 +98,12 @@ public class LogReader {
 				}
 			}
 			
+			//删掉为了读取完整日志行内容而多余读取的一条日志记录
+			if(result.size() >= limit)
+			{
+				result.remove(result.size()-1);
+			}
+			
 			return result;
 		} catch (IOException e) {
 			logger.error("exception on getLogList :", e);
@@ -84,8 +113,8 @@ public class LogReader {
 	}
 	
 	/**
-	 * 读取下一行日志,递归至下一行行首
-	 * @return [0] 当前文件指针处内容至新行开始处胡上一条的内容 [1] 新读取的一行日志
+	 * 读取下一行日志,递归至下一行日志首行尾部
+	 * @return Log 匹配到的第一行日志
 	 * @throws IOException 
 	 */
 	private Log readLine(StringBuilder preLineContent) throws IOException
@@ -103,7 +132,7 @@ public class LogReader {
 			}
 			else
 			{
-				preLineContent.append(phyLine);
+				preLineContent.append(phyLine).append(System.lineSeparator());
 				return readLine(preLineContent);
 			}
 		}
