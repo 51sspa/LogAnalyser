@@ -85,6 +85,10 @@ public class LogReader {
 					pre.setLog(preContent.insert(0, pre.getLog()).toString());
 					preContent.setLength(0);//clear buffer
 				}
+				else if(pre == null)
+				{
+					preContent.setLength(0);// 清空第一次读取的当前文件指针行的不完全日志
+				}
 				
 				if(current != null)
 				{
