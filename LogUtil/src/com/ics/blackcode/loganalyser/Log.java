@@ -11,28 +11,39 @@ import java.util.Date;
  */
 public class Log {
 	
-	private String pid;
-	private String tid;
+	private long pid;
+	private long tid;
+	private String tname;
 	private Date date;
 	private String level;
 	private String logger;
-	private String location;
+	private long location;
 	private String log;
-	public String getPid()
+	
+	
+	public long getPid()
 	{
 		return pid;
 	}
-	public void setPid(String pid)
+	public void setPid(long pid)
 	{
 		this.pid = pid;
 	}
-	public String getTid()
+	public long getTid()
 	{
 		return tid;
 	}
-	public void setTid(String tid)
+	public void setTid(long tid)
 	{
 		this.tid = tid;
+	}
+	public String getTname()
+	{
+		return tname;
+	}
+	public void setTname(String tname)
+	{
+		this.tname = tname;
 	}
 	public Date getDate()
 	{
@@ -58,11 +69,11 @@ public class Log {
 	{
 		this.logger = logger;
 	}
-	public String getLocation()
+	public long getLocation()
 	{
 		return location;
 	}
-	public void setLocation(String location)
+	public void setLocation(long location)
 	{
 		this.location = location;
 	}
@@ -74,6 +85,7 @@ public class Log {
 	{
 		this.log = log;
 	}
-
+	
+	
 
 }
