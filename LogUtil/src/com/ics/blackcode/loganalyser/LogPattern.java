@@ -17,7 +17,12 @@ import org.apache.log4j.Logger;
 /**
  * 日志模式 - 代表所解析日志的模式
  * 由命名正则表达式构成
- * 目前支持的模式有 进程号:pid,线程号:tid,日期:date,级别:level,打印类:logger,打印行号:location
+ * 目前支持的模式有 进程号:pid,线程号:tid,线程名:tname,日期:date,级别:level,打印类:logger,打印行号:location
+ * 
+ * 日志模式 examples:  
+ * 2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 496
+ * ^(?<date>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})  \[ (?<tname>\w+):\d+ \] (?<logger>[\w\.]+):(?<location>\d+) - \[ (?<level>\w+) \] .*$
+ * 
  * @author zhuxiaowen
  *
  */
@@ -67,7 +72,7 @@ public class LogPattern {
 		paternNames.add(new SubPattern(3, "level"));
 		paternNames.add(new SubPattern(4, "logger"));
 		paternNames.add(new SubPattern(5, "location"));
-		
+		paternNames.add(new SubPattern(6, "tname"));
 	}
 	
 	/**
@@ -79,7 +84,7 @@ public class LogPattern {
 		this.patternTest = new boolean [paternNames.size()];
 		for(SubPattern subPattern : paternNames)
 		{
-			this.patternTest[subPattern.innerIndex] = logPattern.indexOf("<?" + subPattern.name + '>') != -1;
+			this.patternTest[subPattern.innerIndex] = logPattern.indexOf("?<" + subPattern.name + '>') != -1;
 		}
 	}
 	
@@ -105,7 +110,7 @@ public class LogPattern {
 				subPattern.setValue(log, this.matcher.group(subPattern.name));
 			}
 		}
-		
+		log.setLog(this.matcher.group());
 		return log;
 	}
 
