@@ -30,6 +30,7 @@ public class DataFactory {
 	
 
 	/**
+	 * 这个方法是点击查询按钮时调用
 	 * 根据条件获取json数据 默认符合条件的数据最多返回一万行
 	 * @author tianwenchao 2018-09-12
 	 * @param logFileID 日志文件ID标识唯一
@@ -52,6 +53,8 @@ public class DataFactory {
 		context = aContext;
 				
 		JSONObject fileJson = new JSONObject();
+		
+		/** 此处为构造数据，后面替换成小文的App.readLog 方法 */
 		List<JSONObject> jsonList = new ArrayList<JSONObject>();
 		for(int i=0;i<100000;i++){
 			jsonList.add(getJSONObject("2018-08-26 12:08:57,70"+i,"10"+i,"INFO","[org.jboss.seam.Component]","(main) Component class should be serializable: fixFieldManager"));
@@ -70,6 +73,42 @@ public class DataFactory {
 		return fileJson;
 	}
 	
+	
+	/**
+	 * 这个方法是滚动条滑动时调用
+	 * 返回json数据
+	 * @author tianwenchao 2018-09-16
+	 * @param aLogFileID 日志文件标识，读取哪个日志文件
+	 * @param  startindex  开始位置行数
+	 * @param  rowcount  返回日志行数
+	 * @return JSONObject  
+	 */
+	public JSONObject getLogInfosByScroll(String aLogFileID,long startindex,int rowcount){
+		
+		logFileID = aLogFileID;	
+				
+		JSONObject fileJson = new JSONObject();
+		/** 此处为构造数据，后面替换成小文的App.readLog 方法 */
+		List<JSONObject> jsonList = new ArrayList<JSONObject>();
+		for(int i=0;i<1000;i++){
+			jsonList.add(getJSONObject("2018-08-26 12:08:57,70"+i,"10"+i,"INFO","[org.jboss.seam.Component]","(main) Component class should be serializable: fixFieldManager"));
+		}
+		try {
+			fileJson.put("count", jsonList.size());
+			fileJson.put("index", 1);
+			fileJson.put("data", jsonList);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		
+		dataFilter(jsonList, 1000);
+		
+		System.out.println("jsonList.size:"+jsonList.size());
+		return fileJson;
+	}
+	
+	
+	
 	/***
 	 * 根据原始数据集合过滤所需日志
 	 * @param sourceList 原始数据集合（从后台获取到的）
@@ -83,10 +122,10 @@ public class DataFactory {
 		}
 				
 		int jsonNum = 0;
-		//所有过滤均采用反向判断，即：有一项不符合条件就跳出循环，寻找下一条
-		for(JSONObject tempJson : sourceList){
-			
-			try {
+		try {
+			//所有过滤均采用反向判断，即：有一项不符合条件就跳出循环，寻找下一条
+			for(JSONObject tempJson : sourceList){		
+				
 				if(null!=startTime && !"".equals(startTime)){				
 					if(sdf.parse(tempJson.getString("time")).before(sdf.parse(startTime))){
 						break;
@@ -121,18 +160,16 @@ public class DataFactory {
 						break;
 					}							
 				}
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-				break;
-			}	
-			
-			returnList.add(tempJson);
-			jsonNum++;
-			if(jsonNum==maxLimit){
-				return returnList;
+									
+				returnList.add(tempJson);
+				jsonNum++;
+				if(jsonNum==maxLimit){
+					return returnList;
+				}
 			}
-		}
+		} catch (Exception e) {
+			e.printStackTrace();			
+		}	
 		
 		return returnList;
 	}
