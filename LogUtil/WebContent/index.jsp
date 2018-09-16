@@ -7,17 +7,17 @@
 <title>日志分析工具</title>
 
 <link rel="stylesheet" href="./css/base.css" type="text/css"></link>
-<link rel="stylesheet" href="./css/btscss/bootstrap-theme.css"
+<link rel="stylesheet" href="./css/bootstarp/admin-all-demo.css"
 	type="text/css"></link>
-<link rel="stylesheet" href="./css/btscss/bootstrap.css" type="text/css"></link>
-<link rel="stylesheet" href="./css/btscss/fileinput.css" type="text/css"></link>
-<link rel="stylesheet" href="./css/btscss/admin-all-demo.css"
+<link rel="stylesheet" href="./css/file/fileinput.css" type="text/css"></link>
+<link rel="stylesheet" href="./css/file/theme.css" type="text/css"></link>
+<link rel="stylesheet" href="./css/bootstarp/bootstrap.css"
 	type="text/css"></link>
 
 <script type="text/javascript" src="./js/common/jquery-3.0.0.min.js"></script>
-<script type="text/javascript" src="./js/common/admin-all-demo.js"></script>
-<script type="text/javascript" src="./js/common/js-core.js"></script>
-<script type="text/javascript" src="./js/common/bootstrap.js"></script>
+<script type="text/javascript" src="./js/common/bootstarp/admin-all-demo.js"></script>
+<script type="text/javascript" src="./js/common/file/fileinput.js"></script>
+<script type="text/javascript" src="./js/common/bootstarp/bootstrap.js"></script>
 <script type="text/javascript" src="./js/index.js"></script>
 </head>
 <body>
@@ -110,67 +110,32 @@
 						<h4 class="content-box-wrapper" id="logLabel">选择文件</h4>
 					</div>
 					<div class="border-top border-red modal-body"
-						style="padding-bottom: 165px;">
+						style="padding-bottom: 150px;">
 						<div class="form-group" style="float: left;">
 							<label class="control-label"
 								style="margin-top: 7px; float: left;">文件1</label>
 							<div class="col-sm-11">
-								<!-- <input id="f_upload" type="file" class="file" /> -->
-								<!-- <input type="file" class="form-control" id=""> -->
-								<div class="fileinput fileinput-new input-group"
-									data-provides="fileinput1">
-									<div class="form-control" data-trigger="fileinput1">
-										<i class="glyphicon glyphicon-file fileinput-exists"></i> <span
-											class="fileinput-filename"></span>
-									</div>
-									<span class="input-group-addon btn btn-primary btn-file">
-										<span class="fileinput-new">浏览...</span> <span
-										class="fileinput-exists">Change</span> <input type="file"
-										name="..." value="ssssssss">
-									</span> <a href="#"
-										class="input-group-addon btn btn-default fileinput-exists"
-										data-dismiss="fileinput1">Remove</a>
-								</div>
+								<input id="file1" name="file1" type="file" class="file"
+									data-show-preview="false" data-show-upload="false"
+									data-show-cancel="false">
 							</div>
 						</div>
 						<div class="form-group" style="float: left;">
 							<label class="control-label"
 								style="margin-top: 7px; float: left;">文件2</label>
 							<div class="col-sm-11">
-								<div class="fileinput fileinput-new input-group"
-									data-provides="fileinput2">
-									<div class="form-control" data-trigger="fileinput2">
-										<i class="glyphicon glyphicon-file fileinput-exists"></i> <span
-											class="fileinput-filename"></span>
-									</div>
-									<span class="input-group-addon btn btn-primary btn-file">
-										<span class="fileinput-new">浏览...</span> <span
-										class="fileinput-exists">Change</span> <input type="file"
-										name="...">
-									</span> <a href="#"
-										class="input-group-addon btn btn-default fileinput-exists"
-										data-dismiss="fileinput2">Remove</a>
-								</div>
+								<input id="file1" name="file1" type="file" class="file"
+									data-show-preview="false" data-show-upload="false"
+									data-show-cancel="false">
 							</div>
 						</div>
 						<div class="form-group" style="float: left;">
 							<label class="control-label"
 								style="margin-top: 7px; float: left;">文件3</label>
 							<div class="col-sm-11">
-								<div class="fileinput fileinput-new input-group"
-									data-provides="fileinput3">
-									<div class="form-control" data-trigger="fileinput3">
-										<i class="glyphicon glyphicon-file fileinput-exists"></i> <span
-											class="fileinput-filename"></span>
-									</div>
-									<span class="input-group-addon btn btn-primary btn-file">
-										<span class="fileinput-new">浏览...</span> <span
-										class="fileinput-exists">Change</span> <input type="file"
-										name="...">
-									</span> <a href="#"
-										class="input-group-addon btn btn-default fileinput-exists"
-										data-dismiss="fileinput3">Remove</a>
-								</div>
+								<input id="file1" name="file1" type="file" class="file"
+									data-show-preview="false" data-show-upload="false"
+									data-show-cancel="false">
 							</div>
 						</div>
 					</div>
@@ -182,7 +147,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<!-- 导入日志 -->
 		<div class="modal fade" id="settings" tabindex="-1" role="dialog"
 			aria-labelledby="logLabel" aria-hidden="true">
@@ -194,9 +159,7 @@
 						<h4 class="content-box-wrapper" id="logLabel">基本设置</h4>
 					</div>
 					<div class="border-top border-red modal-body"
-						style="padding-bottom: 165px;">
-						内容预留，暂时不清楚内容
-					</div>
+						style="padding-bottom: 150px;">内容预留，暂时不清楚内容</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-primary">确定</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">取消
