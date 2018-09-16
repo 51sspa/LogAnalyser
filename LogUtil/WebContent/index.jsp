@@ -15,7 +15,8 @@
 	type="text/css"></link>
 
 <script type="text/javascript" src="./js/common/jquery-3.0.0.min.js"></script>
-<script type="text/javascript" src="./js/common/bootstarp/admin-all-demo.js"></script>
+<script type="text/javascript"
+	src="./js/common/bootstarp/admin-all-demo.js"></script>
 <script type="text/javascript" src="./js/common/file/fileinput.js"></script>
 <script type="text/javascript" src="./js/common/bootstarp/bootstrap.js"></script>
 <script type="text/javascript" src="./js/index.js"></script>
@@ -124,7 +125,7 @@
 							<label class="control-label"
 								style="margin-top: 7px; float: left;">文件2</label>
 							<div class="col-sm-11">
-								<input id="file1" name="file1" type="file" class="file"
+								<input id="file2" name="file2" type="file" class="file"
 									data-show-preview="false" data-show-upload="false"
 									data-show-cancel="false">
 							</div>
@@ -133,16 +134,16 @@
 							<label class="control-label"
 								style="margin-top: 7px; float: left;">文件3</label>
 							<div class="col-sm-11">
-								<input id="file1" name="file1" type="file" class="file"
+								<input id="file3" name="file3" type="file" class="file"
 									data-show-preview="false" data-show-upload="false"
 									data-show-cancel="false">
 							</div>
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary">确定</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">取消
-						</button>
+						<button id="logConfim" type="button" class="btn btn-primary">确定</button>
+						<button id="logCancel" type="button" class="btn btn-default"
+							data-dismiss="modal">取消</button>
 					</div>
 				</div>
 			</div>
