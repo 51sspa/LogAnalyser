@@ -1,0 +1,832 @@
+2018-09-14 23:08:38  [ main:0 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 0
+2018-09-14 23:08:38  [ main:16 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 1
+2018-09-14 23:08:38  [ main:16 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 3
+2018-09-14 23:08:38  [ main:16 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 4
+ error message is 
+ just say it is produced in sequece : 4
+java.lang.Exception: Test exception : 4
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:32 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 5
+2018-09-14 23:08:38  [ main:32 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 6
+2018-09-14 23:08:38  [ main:32 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 7
+2018-09-14 23:08:38  [ main:32 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 9
+2018-09-14 23:08:38  [ main:32 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 10
+ error message is 
+ just say it is produced in sequece : 10
+java.lang.Exception: Test exception : 10
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:47 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 11
+2018-09-14 23:08:38  [ main:47 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 12
+2018-09-14 23:08:38  [ main:47 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 13
+2018-09-14 23:08:38  [ main:47 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 15
+2018-09-14 23:08:38  [ main:47 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 16
+ error message is 
+ just say it is produced in sequece : 16
+java.lang.Exception: Test exception : 16
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:47 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 17
+2018-09-14 23:08:38  [ main:47 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 18
+2018-09-14 23:08:38  [ main:47 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 19
+2018-09-14 23:08:38  [ main:47 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 21
+2018-09-14 23:08:38  [ main:47 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 22
+ error message is 
+ just say it is produced in sequece : 22
+java.lang.Exception: Test exception : 22
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:47 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 23
+2018-09-14 23:08:38  [ main:47 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 24
+2018-09-14 23:08:38  [ main:47 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 25
+2018-09-14 23:08:38  [ main:47 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 27
+2018-09-14 23:08:38  [ main:47 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 28
+ error message is 
+ just say it is produced in sequece : 28
+java.lang.Exception: Test exception : 28
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:47 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 29
+2018-09-14 23:08:38  [ main:47 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 30
+2018-09-14 23:08:38  [ main:63 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 31
+2018-09-14 23:08:38  [ main:63 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 33
+2018-09-14 23:08:38  [ main:63 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 34
+ error message is 
+ just say it is produced in sequece : 34
+java.lang.Exception: Test exception : 34
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:63 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 35
+2018-09-14 23:08:38  [ main:63 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 36
+2018-09-14 23:08:38  [ main:63 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 37
+2018-09-14 23:08:38  [ main:63 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 39
+2018-09-14 23:08:38  [ main:63 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 40
+ error message is 
+ just say it is produced in sequece : 40
+java.lang.Exception: Test exception : 40
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:63 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 41
+2018-09-14 23:08:38  [ main:63 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 42
+2018-09-14 23:08:38  [ main:63 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 43
+2018-09-14 23:08:38  [ main:63 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 45
+2018-09-14 23:08:38  [ main:63 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 46
+ error message is 
+ just say it is produced in sequece : 46
+java.lang.Exception: Test exception : 46
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:63 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 47
+2018-09-14 23:08:38  [ main:63 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 48
+2018-09-14 23:08:38  [ main:63 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 49
+2018-09-14 23:08:38  [ main:63 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 51
+2018-09-14 23:08:38  [ main:63 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 52
+ error message is 
+ just say it is produced in sequece : 52
+java.lang.Exception: Test exception : 52
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:63 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 53
+2018-09-14 23:08:38  [ main:63 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 54
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 55
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 57
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 58
+ error message is 
+ just say it is produced in sequece : 58
+java.lang.Exception: Test exception : 58
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 59
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 60
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 61
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 63
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 64
+ error message is 
+ just say it is produced in sequece : 64
+java.lang.Exception: Test exception : 64
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 65
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 66
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 67
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 69
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 70
+ error message is 
+ just say it is produced in sequece : 70
+java.lang.Exception: Test exception : 70
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 71
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 72
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 73
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 75
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 76
+ error message is 
+ just say it is produced in sequece : 76
+java.lang.Exception: Test exception : 76
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 77
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 78
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 79
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 81
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 82
+ error message is 
+ just say it is produced in sequece : 82
+java.lang.Exception: Test exception : 82
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 83
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 84
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 85
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 87
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 88
+ error message is 
+ just say it is produced in sequece : 88
+java.lang.Exception: Test exception : 88
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 89
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 90
+2018-09-14 23:08:38  [ main:78 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 91
+2018-09-14 23:08:38  [ main:110 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 93
+2018-09-14 23:08:38  [ main:110 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 94
+ error message is 
+ just say it is produced in sequece : 94
+java.lang.Exception: Test exception : 94
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:110 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 95
+2018-09-14 23:08:38  [ main:110 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 96
+2018-09-14 23:08:38  [ main:110 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 97
+2018-09-14 23:08:38  [ main:110 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 99
+2018-09-14 23:08:38  [ main:110 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 100
+ error message is 
+ just say it is produced in sequece : 100
+java.lang.Exception: Test exception : 100
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:110 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 101
+2018-09-14 23:08:38  [ main:110 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 102
+2018-09-14 23:08:38  [ main:110 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 103
+2018-09-14 23:08:38  [ main:110 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 105
+2018-09-14 23:08:38  [ main:110 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 106
+ error message is 
+ just say it is produced in sequece : 106
+java.lang.Exception: Test exception : 106
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:110 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 107
+2018-09-14 23:08:38  [ main:110 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 108
+2018-09-14 23:08:38  [ main:110 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 109
+2018-09-14 23:08:38  [ main:110 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 111
+2018-09-14 23:08:38  [ main:110 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 112
+ error message is 
+ just say it is produced in sequece : 112
+java.lang.Exception: Test exception : 112
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:110 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 113
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 114
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 115
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 117
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 118
+ error message is 
+ just say it is produced in sequece : 118
+java.lang.Exception: Test exception : 118
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 119
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 120
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 121
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 123
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 124
+ error message is 
+ just say it is produced in sequece : 124
+java.lang.Exception: Test exception : 124
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 125
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 126
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 127
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 129
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 130
+ error message is 
+ just say it is produced in sequece : 130
+java.lang.Exception: Test exception : 130
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 131
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 132
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 133
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 135
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 136
+ error message is 
+ just say it is produced in sequece : 136
+java.lang.Exception: Test exception : 136
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 137
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 138
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 139
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 141
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 142
+ error message is 
+ just say it is produced in sequece : 142
+java.lang.Exception: Test exception : 142
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 143
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 144
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 145
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 147
+2018-09-14 23:08:38  [ main:125 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 148
+ error message is 
+ just say it is produced in sequece : 148
+java.lang.Exception: Test exception : 148
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 149
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 150
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 151
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 153
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 154
+ error message is 
+ just say it is produced in sequece : 154
+java.lang.Exception: Test exception : 154
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 155
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 156
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 157
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 159
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 160
+ error message is 
+ just say it is produced in sequece : 160
+java.lang.Exception: Test exception : 160
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 161
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 162
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 163
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 165
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 166
+ error message is 
+ just say it is produced in sequece : 166
+java.lang.Exception: Test exception : 166
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 167
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 168
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 169
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 171
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 172
+ error message is 
+ just say it is produced in sequece : 172
+java.lang.Exception: Test exception : 172
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 173
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 174
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 175
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 177
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 178
+ error message is 
+ just say it is produced in sequece : 178
+java.lang.Exception: Test exception : 178
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 179
+2018-09-14 23:08:38  [ main:141 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 180
+2018-09-14 23:08:38  [ main:173 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 181
+2018-09-14 23:08:38  [ main:173 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 183
+2018-09-14 23:08:38  [ main:173 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 184
+ error message is 
+ just say it is produced in sequece : 184
+java.lang.Exception: Test exception : 184
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:173 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 185
+2018-09-14 23:08:38  [ main:173 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 186
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 187
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 189
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 190
+ error message is 
+ just say it is produced in sequece : 190
+java.lang.Exception: Test exception : 190
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 191
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 192
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 193
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 195
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 196
+ error message is 
+ just say it is produced in sequece : 196
+java.lang.Exception: Test exception : 196
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 197
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 198
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 199
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 201
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 202
+ error message is 
+ just say it is produced in sequece : 202
+java.lang.Exception: Test exception : 202
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 203
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 204
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 205
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 207
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 208
+ error message is 
+ just say it is produced in sequece : 208
+java.lang.Exception: Test exception : 208
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 209
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 210
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 211
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 213
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 214
+ error message is 
+ just say it is produced in sequece : 214
+java.lang.Exception: Test exception : 214
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 215
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 216
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 217
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 219
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 220
+ error message is 
+ just say it is produced in sequece : 220
+java.lang.Exception: Test exception : 220
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 221
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 222
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 223
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 225
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 226
+ error message is 
+ just say it is produced in sequece : 226
+java.lang.Exception: Test exception : 226
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 227
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 228
+2018-09-14 23:08:38  [ main:189 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 229
+2018-09-14 23:08:38  [ main:204 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 231
+2018-09-14 23:08:38  [ main:204 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 232
+ error message is 
+ just say it is produced in sequece : 232
+java.lang.Exception: Test exception : 232
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:204 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 233
+2018-09-14 23:08:38  [ main:204 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 234
+2018-09-14 23:08:38  [ main:204 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 235
+2018-09-14 23:08:38  [ main:204 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 237
+2018-09-14 23:08:38  [ main:204 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 238
+ error message is 
+ just say it is produced in sequece : 238
+java.lang.Exception: Test exception : 238
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:204 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 239
+2018-09-14 23:08:38  [ main:204 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 240
+2018-09-14 23:08:38  [ main:204 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 241
+2018-09-14 23:08:38  [ main:204 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 243
+2018-09-14 23:08:38  [ main:204 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 244
+ error message is 
+ just say it is produced in sequece : 244
+java.lang.Exception: Test exception : 244
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:220 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 245
+2018-09-14 23:08:38  [ main:220 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 246
+2018-09-14 23:08:38  [ main:220 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 247
+2018-09-14 23:08:38  [ main:220 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 249
+2018-09-14 23:08:38  [ main:220 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 250
+ error message is 
+ just say it is produced in sequece : 250
+java.lang.Exception: Test exception : 250
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:220 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 251
+2018-09-14 23:08:38  [ main:220 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 252
+2018-09-14 23:08:38  [ main:220 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 253
+2018-09-14 23:08:38  [ main:220 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 255
+2018-09-14 23:08:38  [ main:220 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 256
+ error message is 
+ just say it is produced in sequece : 256
+java.lang.Exception: Test exception : 256
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:220 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 257
+2018-09-14 23:08:38  [ main:220 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 258
+2018-09-14 23:08:38  [ main:220 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 259
+2018-09-14 23:08:38  [ main:220 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 261
+2018-09-14 23:08:38  [ main:220 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 262
+ error message is 
+ just say it is produced in sequece : 262
+java.lang.Exception: Test exception : 262
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:220 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 263
+2018-09-14 23:08:38  [ main:220 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 264
+2018-09-14 23:08:38  [ main:220 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 265
+2018-09-14 23:08:38  [ main:220 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 267
+2018-09-14 23:08:38  [ main:220 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 268
+ error message is 
+ just say it is produced in sequece : 268
+java.lang.Exception: Test exception : 268
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:220 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 269
+2018-09-14 23:08:38  [ main:220 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 270
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 271
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 273
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 274
+ error message is 
+ just say it is produced in sequece : 274
+java.lang.Exception: Test exception : 274
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 275
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 276
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 277
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 279
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 280
+ error message is 
+ just say it is produced in sequece : 280
+java.lang.Exception: Test exception : 280
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 281
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 282
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 283
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 285
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 286
+ error message is 
+ just say it is produced in sequece : 286
+java.lang.Exception: Test exception : 286
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 287
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 288
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 289
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 291
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 292
+ error message is 
+ just say it is produced in sequece : 292
+java.lang.Exception: Test exception : 292
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 293
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 294
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 295
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 297
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 298
+ error message is 
+ just say it is produced in sequece : 298
+java.lang.Exception: Test exception : 298
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 299
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 300
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 301
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 303
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 304
+ error message is 
+ just say it is produced in sequece : 304
+java.lang.Exception: Test exception : 304
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 305
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 306
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 307
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 309
+2018-09-14 23:08:38  [ main:235 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 310
+ error message is 
+ just say it is produced in sequece : 310
+java.lang.Exception: Test exception : 310
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 311
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 312
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 313
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 315
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 316
+ error message is 
+ just say it is produced in sequece : 316
+java.lang.Exception: Test exception : 316
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 317
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 318
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 319
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 321
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 322
+ error message is 
+ just say it is produced in sequece : 322
+java.lang.Exception: Test exception : 322
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 323
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 324
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 325
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 327
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 328
+ error message is 
+ just say it is produced in sequece : 328
+java.lang.Exception: Test exception : 328
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 329
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 330
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 331
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 333
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 334
+ error message is 
+ just say it is produced in sequece : 334
+java.lang.Exception: Test exception : 334
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 335
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 336
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 337
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 339
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 340
+ error message is 
+ just say it is produced in sequece : 340
+java.lang.Exception: Test exception : 340
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 341
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 342
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 343
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 345
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 346
+ error message is 
+ just say it is produced in sequece : 346
+java.lang.Exception: Test exception : 346
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 347
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 348
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 349
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 351
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 352
+ error message is 
+ just say it is produced in sequece : 352
+java.lang.Exception: Test exception : 352
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 353
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 354
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 355
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 357
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 358
+ error message is 
+ just say it is produced in sequece : 358
+java.lang.Exception: Test exception : 358
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 359
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 360
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 361
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 363
+2018-09-14 23:08:38  [ main:251 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 364
+ error message is 
+ just say it is produced in sequece : 364
+java.lang.Exception: Test exception : 364
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 365
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 366
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 367
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 369
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 370
+ error message is 
+ just say it is produced in sequece : 370
+java.lang.Exception: Test exception : 370
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 371
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 372
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 373
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 375
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 376
+ error message is 
+ just say it is produced in sequece : 376
+java.lang.Exception: Test exception : 376
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 377
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 378
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 379
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 381
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 382
+ error message is 
+ just say it is produced in sequece : 382
+java.lang.Exception: Test exception : 382
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 383
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 384
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 385
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 387
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 388
+ error message is 
+ just say it is produced in sequece : 388
+java.lang.Exception: Test exception : 388
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 389
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 390
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 391
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 393
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 394
+ error message is 
+ just say it is produced in sequece : 394
+java.lang.Exception: Test exception : 394
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 395
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 396
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 397
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 399
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 400
+ error message is 
+ just say it is produced in sequece : 400
+java.lang.Exception: Test exception : 400
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 401
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 402
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 403
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 405
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 406
+ error message is 
+ just say it is produced in sequece : 406
+java.lang.Exception: Test exception : 406
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 407
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 408
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 409
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 411
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 412
+ error message is 
+ just say it is produced in sequece : 412
+java.lang.Exception: Test exception : 412
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 413
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 414
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 415
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 417
+2018-09-14 23:08:38  [ main:267 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 418
+ error message is 
+ just say it is produced in sequece : 418
+java.lang.Exception: Test exception : 418
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 419
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 420
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 421
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 423
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 424
+ error message is 
+ just say it is produced in sequece : 424
+java.lang.Exception: Test exception : 424
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 425
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 426
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 427
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 429
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 430
+ error message is 
+ just say it is produced in sequece : 430
+java.lang.Exception: Test exception : 430
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 431
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 432
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 433
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 435
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 436
+ error message is 
+ just say it is produced in sequece : 436
+java.lang.Exception: Test exception : 436
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 437
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 438
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 439
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 441
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 442
+ error message is 
+ just say it is produced in sequece : 442
+java.lang.Exception: Test exception : 442
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 443
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 444
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 445
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 447
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 448
+ error message is 
+ just say it is produced in sequece : 448
+java.lang.Exception: Test exception : 448
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 449
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 450
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 451
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 453
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 454
+ error message is 
+ just say it is produced in sequece : 454
+java.lang.Exception: Test exception : 454
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 455
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 456
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 457
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 459
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 460
+ error message is 
+ just say it is produced in sequece : 460
+java.lang.Exception: Test exception : 460
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 461
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 462
+2018-09-14 23:08:38  [ main:282 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 463
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 465
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 466
+ error message is 
+ just say it is produced in sequece : 466
+java.lang.Exception: Test exception : 466
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 467
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 468
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 469
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 471
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 472
+ error message is 
+ just say it is produced in sequece : 472
+java.lang.Exception: Test exception : 472
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 473
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 474
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 475
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 477
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 478
+ error message is 
+ just say it is produced in sequece : 478
+java.lang.Exception: Test exception : 478
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 479
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 480
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 481
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 483
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 484
+ error message is 
+ just say it is produced in sequece : 484
+java.lang.Exception: Test exception : 484
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 485
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 486
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 487
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 489
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 490
+ error message is 
+ just say it is produced in sequece : 490
+java.lang.Exception: Test exception : 490
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 491
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 492
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 493
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:58 - [ WARN ]  this is warn message : 495
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 496
+ error message is 
+ just say it is produced in sequece : 496
+java.lang.Exception: Test exception : 496
+	at com.ics.blackcode.loganalyser.App.produceLog(App.java:65)
+	at com.ics.blackcode.loganalyser.App.main(App.java:18)
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 497
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:50 - [ DEBUG ]  this is debug message : 498
+2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:54 - [ INFO ]  this is info message : 499

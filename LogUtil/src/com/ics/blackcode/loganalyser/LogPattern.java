@@ -17,11 +17,11 @@ import org.apache.log4j.Logger;
 /**
  * 日志模式 - 代表所解析日志的模式
  * 由命名正则表达式构成
- * 目前支持的模式有 进程号:pid,线程号:tid,线程名:tname,日期:date,级别:level,打印类:logger,打印行号:location
+ * 目前支持的模式有 进程号:pid,线程号:tid,线程名:tname,日期:date,级别:level,打印类:logger,打印行号:location,纯日志内容/调用打印类时设置的输出内容:content
  * 
  * 日志模式 examples:  
  * 2018-09-14 23:08:38  [ main:298 ] com.ics.blackcode.loganalyser.App:69 - [ ERROR ]  this is error message : 496
- * ^(?<date>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})  \[ (?<tname>\w+):\d+ \] (?<logger>[\w\.]+):(?<location>\d+) - \[ (?<level>\w+) \] .*$
+ * ^(?<date>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})  \[ (?<tname>\w+):\d+ \] (?<logger>[\w\.]+):(?<location>\d+) - \[ (?<level>\w+) \] (?<content>.*)$
  * 
  * @author zhuxiaowen
  *
@@ -73,6 +73,7 @@ public class LogPattern {
 		paternNames.add(new SubPattern(4, "logger"));
 		paternNames.add(new SubPattern(5, "location"));
 		paternNames.add(new SubPattern(6, "tname"));
+		paternNames.add(new SubPattern(7, "content"));
 	}
 	
 	/**
@@ -110,7 +111,10 @@ public class LogPattern {
 				subPattern.setValue(log, this.matcher.group(subPattern.name));
 			}
 		}
-		log.setLog(this.matcher.group());
+		//process log content
+		String allLine = this.matcher.group();
+		log.setLog(allLine);
+		//log.setContent(allLine.substring(this.matcher.end(this.matcher.groupCount())));
 		return log;
 	}
 

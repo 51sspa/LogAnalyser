@@ -10,14 +10,23 @@ import java.util.Date;
  *
  */
 public class Log {
-	
+	//进程ID
 	private long pid;
+	//线程ID
 	private long tid;
+	//线程名称
 	private String tname;
+	//打印时间
 	private Date date;
+	//日志级别
 	private String level;
+	//日志打印类、文件...
 	private String logger;
+	//日志打印类、文件...的打印行
 	private long location;
+	//纯日志内容，客户调用日志类时所传递的内容
+	private String content;
+	//日志内容，打印工具所打印的完整的日志内容
 	private String log;
 	
 	
@@ -76,6 +85,14 @@ public class Log {
 	public void setLocation(long location)
 	{
 		this.location = location;
+	}
+	public String getContent()
+	{
+		return content;
+	}
+	public void setContent(String pureContent)
+	{
+		this.content = pureContent;
 	}
 	public String getLog()
 	{

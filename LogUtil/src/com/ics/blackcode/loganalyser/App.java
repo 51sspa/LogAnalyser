@@ -27,7 +27,7 @@ public class App
 	private static void checkReadLog()
 	{
 		String logFile = "D:\\harold\\env\\eclipse\\workspace\\loganalyser\\src\\main\\resource\\log.log";
-		String logPattern = "^(?<date>\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2})  \\[ (?<tname>\\w+):\\d+ \\] (?<logger>[\\w\\.]+):(?<location>\\d+) - \\[ (?<level>\\w+) \\] .*$";
+		String logPattern = "^(?<date>\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2})  \\[ (?<tname>\\w+):\\d+ \\] (?<logger>[\\w\\.]+):(?<location>\\d+) - \\[ (?<level>\\w+) \\] (?<content>.*)$";
         
     	long offset = 217;
     	int limit = 10;
@@ -37,7 +37,7 @@ public class App
         logger.info("fetched size is : " + logs.size());
         for(Log log : logs)
         {
-        	logger.info(" log content line : "  + log.getLog());
+        	logger.info(" log content line : "  + log.getContent());
         }		
 	}
 
@@ -45,7 +45,7 @@ public class App
 	private static void checkPattern()
 	{
 		String input = "2018-09-14 23:08:38  [ main:32 ] com.ics.blackcode.loganalyser.App:74 - [ FATAL ]  this is fatal message : 5";
-    	String logPattern = "^(?<date>\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2})  \\[ (?<tname>\\w+):\\d+ \\] (?<logger>[\\w\\.]+):(?<location>\\d+) - \\[ (?<level>\\w+) \\] .*$";
+    	String logPattern = "^(?<date>\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2})  \\[ (?<tname>\\w+):\\d+ \\] (?<logger>[\\w\\.]+):(?<location>\\d+) - \\[ (?<level>\\w+) \\] (?<content>.*)$";
         logger.info(Pattern.matches(logPattern, input));		
 	}
 
@@ -62,19 +62,19 @@ public class App
 	{
 		for(int i=0; i< lines; i++)
 		{
-			if(i%6 == 0)
+			if(i%5 == 0)
 			{
 				logger.debug("this is debug message : " + i);
 			}
-			else if(i%6 == 1)
+			else if(i%5 == 1)
 			{
 				logger.info("this is info message : " + i);
 			}
-			else if(i%6 == 3)
+			else if(i%5 == 2)
 			{
 				logger.warn("this is warn message : " + i);
 			}
-			else if(i%6 == 4)
+			else if(i%5 == 3)
 			{
 				
 				try
@@ -86,7 +86,7 @@ public class App
 					logger.error("this is error message : " + i + "\n error message is \n just say it is produced in sequece : " + i, e);
 				}
 			}
-			else if(i%6 == 5)
+			else if(i%5 == 4)
 			{
 				logger.fatal("this is fatal message : " + i);
 			}
