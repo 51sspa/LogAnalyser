@@ -14,7 +14,8 @@
 <link rel="stylesheet" href="./css/bootstarp/bootstrap.css"
 	type="text/css"></link>
 
-<script type="text/javascript" src="./js/common/jquery-3.0.0.min.js"></script>
+<script type="text/javascript" src="./js/common/jquery/jquery-3.0.0.min.js"></script>
+<script type="text/javascript" src="./js/common/jquery/jquery.json-2.4.min.js"></script>
 <script type="text/javascript"
 	src="./js/common/bootstarp/admin-all-demo.js"></script>
 <script type="text/javascript" src="./js/common/file/fileinput.js"></script>
