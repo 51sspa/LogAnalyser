@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 
 /**
  * 日志读取类 - 用于读取指定日志中指定偏移的若干行日志
- * 非线程安全，若要多线程调用，请实例化多个
+ * 非线程安全，若要多线程调用，请实例化多个,使用完毕调用 close 方法关闭文件资源
  * @author zhuxiaowen
  *
  */
@@ -20,8 +20,8 @@ public class LogReader {
 	private static final Logger logger = Logger.getLogger(LogReader.class);
 	private RandomAccessFile sourcee;
 	private LogPattern pattern;
-	//未匹配到日志模式时继续搜寻的行数，超出后仍未找到的话就终止返回， 后期加上这个特性
-	private static final int DEFAUTL_BREAK_SEARCH_NUM = 100;
+	//未匹配到日志模式时继续搜寻的行数，超出后仍未找到的话就终止返回。
+	private static final int DEFAUTL_BREAK_SEARCH_NUM = 500;
 
 	/**
 	 * 
@@ -79,11 +79,23 @@ public class LogReader {
 			
 			for(int i = 0; i <= limit; i++)
 			{
-				current = this.readLine(preContent);
+				current = this.readLine(preContent, DEFAUTL_BREAK_SEARCH_NUM);
 				if(pre !=null && preContent.length() > 0)
 				{
-					pre.setLog(preContent.insert(0, pre.getLog()).toString());
-					preContent.setLength(0);//clear buffer
+					//去掉多行日志最后一行后面的换行符，所返回的日志，多行日志均不会在末尾添加换行符
+					preContent.setLength(preContent.length() - System.lineSeparator().length());
+					//续接首行后面的换行符
+					preContent.insert(0,System.lineSeparator());
+					//设置全属性日志
+					pre.setLog(pre.getLog() + preContent.toString());
+					//设置纯内容日志
+					pre.setContent(preContent.insert(0, pre.getContent()).toString());
+					//clear buffer
+					preContent.setLength(0);
+				}
+				else if(pre == null)
+				{
+					preContent.setLength(0);// 清空第一次读取的当前文件指针行的不完全日志
 				}
 				
 				if(current != null)
@@ -114,10 +126,11 @@ public class LogReader {
 	
 	/**
 	 * 读取下一行日志,递归至下一行日志首行尾部
+	 * @param maxSearchLines 为了找寻到日志首行，所搜索的非首行的最大行数，
 	 * @return Log 匹配到的第一行日志
 	 * @throws IOException 
 	 */
-	private Log readLine(StringBuilder preLineContent) throws IOException
+	private Log readLine(StringBuilder preLineContent, int maxSearchLines) throws IOException
 	{
 		String phyLine = sourcee.readLine();
 		if(phyLine == null)
@@ -133,7 +146,8 @@ public class LogReader {
 			else
 			{
 				preLineContent.append(phyLine).append(System.lineSeparator());
-				return readLine(preLineContent);
+				//尚未超过最大搜索深度则继续搜索
+				return --maxSearchLines > 0 ? readLine(preLineContent, maxSearchLines) : null;
 			}
 		}
 
@@ -148,5 +162,26 @@ public class LogReader {
 		}
 		
 		return 0;
+	}
+	
+	/**
+	 * 当不再使用{@link LogReader} 对象时，需要调用来关闭所使用的文件资源
+	 */
+	public void close()
+	{
+		try
+		{
+			this.sourcee.close();
+		} catch (IOException e)
+		{
+			logger.error("can not close log reader's file.", e);
+		}
+	}
+	
+	
+	@Override
+	protected void finalize()
+	{
+		close();
 	}
 }
