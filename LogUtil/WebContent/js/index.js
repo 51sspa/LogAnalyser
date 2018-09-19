@@ -1,3 +1,62 @@
+function apiPost(url, params, successCallback, failCallback){
+	var data = {};
+	if(params){
+		data = params;
+	}
+	$.ajax({
+		url : url,
+		type : "post",
+		async : false,
+		data : $.toJSON(data),
+		contentType : 'application/json',
+		success : function(data) {
+			var json = data;
+			if(typeof(json) == 'string')
+			{
+				json = JSON.parse(data);
+			}
+			if(successCallback){
+				successCallback(json);
+			}else{
+				console.log(json);
+			}
+		},
+		error : function(e) {
+			if(failCallback){
+				failCallback(json);
+			}else{
+				console.log(e);
+			}
+		}
+	});
+};
+
+function loadFiles(){
+	//apiPost('test/sayHello', null, loadLog);
+	var loadLog = function(data){
+		initLogContext(data);
+	};
+	
+	var testData = [
+		{
+		'logIndex' : 1,
+		'logName' : '/js/common/jquery/test1.log',
+		'logType' : 'java',
+		},
+		{
+		'logIndex' : 2,
+		'logName' : '/js/common/jquery/test2.log',
+		'logType' : 'java',
+		},
+		{
+		'logIndex' : 3,
+		'logName' : '/js/common/jquery/test3.log',
+		'logType' : 'C++',
+		}
+	];
+	loadLog(testData);
+};
+
 $(function() {
 	var fileName1 = "";
 	var fileName2 = "";
@@ -49,5 +108,8 @@ $(function() {
 			$(this).dequeue();
 		});
 	});
+	
+	loadFiles();
+	
 });
 

@@ -13,16 +13,72 @@
 <link rel="stylesheet" href="./css/file/theme.css" type="text/css"></link>
 <link rel="stylesheet" href="./css/bootstarp/bootstrap.css"
 	type="text/css"></link>
-
+ 
 <script type="text/javascript" src="./js/common/jquery/jquery-3.0.0.min.js"></script>
 <script type="text/javascript" src="./js/common/jquery/jquery.json-2.4.min.js"></script>
+
 <script type="text/javascript"
 	src="./js/common/bootstarp/admin-all-demo.js"></script>
 <script type="text/javascript" src="./js/common/file/fileinput.js"></script>
 <script type="text/javascript" src="./js/common/bootstarp/bootstrap.js"></script>
 <script type="text/javascript" src="./js/index.js"></script>
+
+<style type="text/css">
+	pre, xmp, plaintext, listing {
+		margin: 0em 0px;
+	}
+	a{
+		width: 100%;
+	}
+	.myleft {
+	    width: 6%;
+	}
+	.mycenter {
+	    width: 94%;
+	}
+	.myhead {
+	    width: 93%;
+	}
+	.mycontent {
+	    width: 93%;
+	}
+	.mycontent {
+		display:flex;
+		flex-direction:row;
+		height:90%;
+	}
+	.log-display {
+	    flex:1;
+		word-break: break-all;
+		word-wrap: break-word;
+		color: #555;
+		background-color: #f8f8f8;
+		overflow:scroll;
+		border: 1px solid #dedede;
+		border-radius: 0;
+		height:100%;
+		margin-right: 2px;
+	}
+	.log-text-lineNO {
+		color: gray;
+	}
+	.log-text-time {
+		color: #5eb95e;
+	}
+	.log-text-level {
+		color: #dd514c;
+	}
+	.log-text-pre {
+		color: #dd51ff;
+	}
+	.log-text-context {
+		padding-right: 20px;
+	}
+</style>
+
+<script type="text/javascript" src="./js/log/showlog.js"></script>
 </head>
-<body>
+<body style="position:absolute;width:100%;height:100%;background-color: green;">
 	<div class="mycontainer">
 		<div class="myleft">
 			<div class="panel panel-info">
@@ -98,7 +154,7 @@
 				<button id="exeFilter" class="btn btn-primary"
 					style="margin-left: 10px; margin-top: -15px;">执行过滤</button>
 			</div>
-			<div class="mycontent">content</div>
+			<div class="mycontent" id="logPriview">content</div>
 		</div>
 
 		<!-- 导入日志 -->
