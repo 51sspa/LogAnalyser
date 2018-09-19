@@ -21,38 +21,33 @@ $(function() {
 	$("#exeFilter").click(function() {
 		$(this).button('loading').delay(1000).queue(function() {
 			
-			var url = "http://www.baidu.com";
+			var url = "test/sayHello";
 			var params = {};
 			params["fileName"] = "22222";
 			params["processName"] = "aaa";
-			var result = sendPost(url, false, params);
+			
+			$.ajax({
+				url : url,
+				type : "post",
+				async : false,
+				data : $.toJSON(params),
+				contentType : 'application/json',
+				success : function(data) {
+					var json = JSON.parse(data);
+					if (json.success) {
+						alert(json.msg);
+					} else {
+						alert("error");
+					}
+				},
+				error : function(e) {
+					alert("error2");
+				}
+			});
 			
 			$(this).button('reset');
 			$(this).dequeue();
 		});
 	});
-	
-	
-	
 });
 
-/**
- * 发送请求
- * @returns
- */
-function sendPost(url, async, params) {
-	alert($.toJSON(params));
-	$.ajax({
-		url : url,
-		type : "post",
-		async : async,
-		data : $.toJSON(params),
-		contentType : 'application/json',
-		success : function(data) {
-			return data;
-		},
-		error : function(e) {
-			return null;
-		}
-	});
-}
