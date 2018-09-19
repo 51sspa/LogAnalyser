@@ -1,5 +1,6 @@
 package com.tians.datachace;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -108,7 +109,6 @@ public class DataFactory {
 	}
 	
 	
-	
 	/***
 	 * 根据原始数据集合过滤所需日志
 	 * @param sourceList 原始数据集合（从后台获取到的）
@@ -200,6 +200,20 @@ public class DataFactory {
 			return new JSONObject();
 		}
 	}
+	
+	/**
+	 * 获取log日志文件数组,目录为 class同级logs目录下文件
+	 * 如果目录不存在返回null
+	 * @author tianwenchao 2018-09-19
+	 * @return File[] 日志文件数组
+	 */
+	public File[] getlogFiles(){	
+		File f = new File(this.getClass().getResource("/").getPath()+"/logs/");	
+		if(f.exists() && f.isDirectory()){
+			return f.listFiles();
+		}
+		return null;		
+	} 
 	
 	
 }
