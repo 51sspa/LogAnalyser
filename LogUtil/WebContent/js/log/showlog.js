@@ -64,6 +64,8 @@ function initLogContext(data){
 		var params = oneData;
 		url = './data/log'+(i+1)+'.json';
 		apiPost(url, params, startInitData);
+		
+		$('#onLodding').modal('hide');
 	}
 
 }
