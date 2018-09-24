@@ -4,58 +4,72 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import org.json.JSONException;
-import org.json.JSONObject;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.alibaba.fastjson.JSONException;
+import com.alibaba.fastjson.JSONObject;
+import com.ics.util.JsonUtil;
+
+@Controller
+@RequestMapping("/dataFactory")
 public class DataFactory {
 	
-	/** ÒÔÏÂ±äÁ¿±£´æÉÏÒ»´Î²éÑ¯Ìõ¼ş   */
-	/** ±êÊ¶ÈÕÖ¾ÎÄ¼ş  */
+	/** ä»¥ä¸‹å˜é‡ä¿å­˜ä¸Šä¸€æ¬¡æŸ¥è¯¢æ¡ä»¶   */
+	/** æ ‡è¯†æ—¥å¿—æ–‡ä»¶  */
 	private static String logFileID = "111";
-	/** ²éÑ¯ÈÕÖ¾¿ªÊ¼Ê±¼ä  */
+	/** æŸ¥è¯¢æ—¥å¿—å¼€å§‹æ—¶é—´  */
 	private static String startTime = "";
-	/** ²éÑ¯ÈÕÖ¾½áÊøÊ±¼ä  */
+	/** æŸ¥è¯¢æ—¥å¿—ç»“æŸæ—¶é—´  */
 	private static String endTime = "";
-	/** ²éÑ¯ÈÕÖ¾½ø³ÌºÅ  */
+	/** æŸ¥è¯¢æ—¥å¿—è¿›ç¨‹å·  */
 	private static String prossNo = "";
-	/** ÈÕÖ¾¼¶±ğ  */
+	/** æ—¥å¿—çº§åˆ«  */
 	private static String level = "";
-	/** Ç°×º±êÊ¶  */
+	/** å‰ç¼€æ ‡è¯†  */
 	private static String pre = "";
-	/** ÄÚÈİ¹Ø¼ü×Ö  */
+	/** å†…å®¹å…³é”®å­—  */
 	private static String context = "";
 	
 	public SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
-
-	public DataFactory(){}
+	
+	@Resource(name = "JsonUtil")
+	private JsonUtil jsonUtil = null;
 	
 
 	/**
-	 * Õâ¸ö·½·¨ÊÇµã»÷²éÑ¯°´Å¥Ê±µ÷ÓÃ
-	 * ¸ù¾İÌõ¼ş»ñÈ¡jsonÊı¾İ Ä¬ÈÏ·ûºÏÌõ¼şµÄÊı¾İ×î¶à·µ»ØÒ»ÍòĞĞ
+	 * è¿™ä¸ªæ–¹æ³•æ˜¯ç‚¹å‡»æŸ¥è¯¢æŒ‰é’®æ—¶è°ƒç”¨
+	 * æ ¹æ®æ¡ä»¶è·å–jsonæ•°æ® é»˜è®¤ç¬¦åˆæ¡ä»¶çš„æ•°æ®æœ€å¤šè¿”å›ä¸€ä¸‡è¡Œ
 	 * @author tianwenchao 2018-09-12
-	 * @param logFileID ÈÕÖ¾ÎÄ¼şID±êÊ¶Î¨Ò»
-	 * @param startTime ¹ıÂË¿ªÊ¼Ê±¼ä
-	 * @param endTime ¹ıÂË½áÊøÊ±¼ä
-	 * @param prossNo ½ø³ÌºÅ
-	 * @param level ÈÕÖ¾¼¶±ğ
-	 * @param pre ÈÕÖ¾Ç°×º £º [org.jboss.seam.Component]
-	 * @param context ÄÚÈİ¹Ø¼ü×Ö Ä£ºıÆ¥Åä
+	 * @param logFileID æ—¥å¿—æ–‡ä»¶IDæ ‡è¯†å”¯ä¸€
+	 * @param startTime è¿‡æ»¤å¼€å§‹æ—¶é—´
+	 * @param endTime è¿‡æ»¤ç»“æŸæ—¶é—´
+	 * @param prossNo è¿›ç¨‹å·
+	 * @param level æ—¥å¿—çº§åˆ«
+	 * @param pre æ—¥å¿—å‰ç¼€ ï¼š [org.jboss.seam.Component]
+	 * @param context å†…å®¹å…³é”®å­— æ¨¡ç³ŠåŒ¹é…
 	 * @return JSONObject  
 	 */
-	public JSONObject getLogInfosByCon(String aLogFileID,String aStartTime,String aEndTime,String aProssNo,String aLevel,String aPre,String aContext){
+	@RequestMapping("/getLogInfosByCon")
+	public void getLogInfosByCon(HttpServletRequest request, HttpServletResponse response){
 		
-		logFileID = aLogFileID;
-		startTime = aStartTime;
-		endTime = aEndTime;
-		prossNo = aProssNo;
-		level = aLevel;
-		pre = aPre;
-		context = aContext;
+		JSONObject paramJson = jsonUtil.getParamters(request);
+		logFileID = paramJson.getString("logFileID");
+		startTime = paramJson.getString("startTime");
+		endTime = paramJson.getString("endTime");
+		prossNo = paramJson.getString("prossNo");
+		level = paramJson.getString("level");
+		pre = paramJson.getString("pre");
+		context = paramJson.getString("context");	
 				
 		JSONObject fileJson = new JSONObject();
 		
-		/** ´Ë´¦Îª¹¹ÔìÊı¾İ£¬ºóÃæÌæ»»³ÉĞ¡ÎÄµÄApp.readLog ·½·¨ */
+		/** æ­¤å¤„ä¸ºæ„é€ æ•°æ®ï¼Œåé¢æ›¿æ¢æˆå°æ–‡çš„App.readLog æ–¹æ³• */
 		List<JSONObject> jsonList = new ArrayList<JSONObject>();
 		for(int i=0;i<100000;i++){
 			jsonList.add(getJSONObject("2018-08-26 12:08:57,70"+i,"10"+i,"INFO","[org.jboss.seam.Component]","(main) Component class should be serializable: fixFieldManager"));
@@ -71,25 +85,35 @@ public class DataFactory {
 		dataFilter(jsonList, 10000);
 		
 		System.out.println("jsonList.size:"+jsonList.size());
-		return fileJson;
+		
+		JSONObject resultObj = new JSONObject();
+		resultObj.put("data", fileJson);
+		resultObj.put("result", "success");
+
+		jsonUtil.out(response, resultObj.toJSONString());		
 	}
 	
 	
 	/**
-	 * Õâ¸ö·½·¨ÊÇ¹ö¶¯Ìõ»¬¶¯Ê±µ÷ÓÃ
-	 * ·µ»ØjsonÊı¾İ
+	 * è¿™ä¸ªæ–¹æ³•æ˜¯æ»šåŠ¨æ¡æ»‘åŠ¨æ—¶è°ƒç”¨
+	 * è¿”å›jsonæ•°æ®
 	 * @author tianwenchao 2018-09-16
-	 * @param aLogFileID ÈÕÖ¾ÎÄ¼ş±êÊ¶£¬¶ÁÈ¡ÄÄ¸öÈÕÖ¾ÎÄ¼ş
-	 * @param  startindex  ¿ªÊ¼Î»ÖÃĞĞÊı
-	 * @param  rowcount  ·µ»ØÈÕÖ¾ĞĞÊı
+	 * @param logFileID æ—¥å¿—æ–‡ä»¶æ ‡è¯†ï¼Œè¯»å–å“ªä¸ªæ—¥å¿—æ–‡ä»¶
+	 * @param  startindex  å¼€å§‹ä½ç½®è¡Œæ•°
+	 * @param  rowcount  è¿”å›æ—¥å¿—è¡Œæ•°
 	 * @return JSONObject  
 	 */
-	public JSONObject getLogInfosByScroll(String aLogFileID,long startindex,int rowcount){
+	@RequestMapping("/getLogInfosByScroll")
+	public void getLogInfosByScroll(HttpServletRequest request, HttpServletResponse response){
 		
-		logFileID = aLogFileID;	
+		JSONObject paramJson = jsonUtil.getParamters(request);
+		logFileID = paramJson.getString("logFileID");
+		int startindex = Integer.parseInt(paramJson.getString("startTime"));
+		int rowcount = Integer.parseInt(paramJson.getString("rowcount"));
+		
 				
 		JSONObject fileJson = new JSONObject();
-		/** ´Ë´¦Îª¹¹ÔìÊı¾İ£¬ºóÃæÌæ»»³ÉĞ¡ÎÄµÄApp.readLog ·½·¨ */
+		/** æ­¤å¤„ä¸ºæ„é€ æ•°æ®ï¼Œåé¢æ›¿æ¢æˆå°æ–‡çš„App.readLog æ–¹æ³• */
 		List<JSONObject> jsonList = new ArrayList<JSONObject>();
 		for(int i=0;i<1000;i++){
 			jsonList.add(getJSONObject("2018-08-26 12:08:57,70"+i,"10"+i,"INFO","[org.jboss.seam.Component]","(main) Component class should be serializable: fixFieldManager"));
@@ -105,14 +129,18 @@ public class DataFactory {
 		dataFilter(jsonList, 1000);
 		
 		System.out.println("jsonList.size:"+jsonList.size());
-		return fileJson;
+		JSONObject resultObj = new JSONObject();
+		resultObj.put("data", fileJson);
+		resultObj.put("result", "success");
+
+		jsonUtil.out(response, resultObj.toJSONString());		
 	}
 	
 	
 	/***
-	 * ¸ù¾İÔ­Ê¼Êı¾İ¼¯ºÏ¹ıÂËËùĞèÈÕÖ¾
-	 * @param sourceList Ô­Ê¼Êı¾İ¼¯ºÏ£¨´ÓºóÌ¨»ñÈ¡µ½µÄ£©
-	 * @param maxLimit ×î´ó·µ»ØĞĞÊıÏŞÖÆ
+	 * æ ¹æ®åŸå§‹æ•°æ®é›†åˆè¿‡æ»¤æ‰€éœ€æ—¥å¿—
+	 * @param sourceList åŸå§‹æ•°æ®é›†åˆï¼ˆä»åå°è·å–åˆ°çš„ï¼‰
+	 * @param maxLimit æœ€å¤§è¿”å›è¡Œæ•°é™åˆ¶
 	 * @return
 	 */
 	private List<JSONObject> dataFilter(List<JSONObject> sourceList,int maxLimit){
@@ -123,7 +151,7 @@ public class DataFactory {
 				
 		int jsonNum = 0;
 		try {
-			//ËùÓĞ¹ıÂË¾ù²ÉÓÃ·´ÏòÅĞ¶Ï£¬¼´£ºÓĞÒ»Ïî²»·ûºÏÌõ¼ş¾ÍÌø³öÑ­»·£¬Ñ°ÕÒÏÂÒ»Ìõ
+			//æ‰€æœ‰è¿‡æ»¤å‡é‡‡ç”¨åå‘åˆ¤æ–­ï¼Œå³ï¼šæœ‰ä¸€é¡¹ä¸ç¬¦åˆæ¡ä»¶å°±è·³å‡ºå¾ªç¯ï¼Œå¯»æ‰¾ä¸‹ä¸€æ¡
 			for(JSONObject tempJson : sourceList){		
 				
 				if(null!=startTime && !"".equals(startTime)){				
@@ -177,7 +205,7 @@ public class DataFactory {
 	
 	
 	/**
-	 * Éú³Éjson¶ÔÏó
+	 * ç”Ÿæˆjsonå¯¹è±¡
 	 * @author tianwenchao 2018-09-12
 	 * @param logTime
 	 * @param prossNo
@@ -202,18 +230,31 @@ public class DataFactory {
 	}
 	
 	/**
-	 * »ñÈ¡logÈÕÖ¾ÎÄ¼şÊı×é,Ä¿Â¼Îª classÍ¬¼¶logsÄ¿Â¼ÏÂÎÄ¼ş
-	 * Èç¹ûÄ¿Â¼²»´æÔÚ·µ»Ønull
+	 * è·å–logæ—¥å¿—æ–‡ä»¶æ•°ç»„,ç›®å½•ä¸º classåŒçº§logsç›®å½•ä¸‹æ–‡ä»¶
+	 * å¦‚æœç›®å½•ä¸å­˜åœ¨è¿”å›null
 	 * @author tianwenchao 2018-09-19
-	 * @return File[] ÈÕÖ¾ÎÄ¼şÊı×é
+	 * @return æ—¥å¿—æ–‡ä»¶ä¿¡æ¯
 	 */
-	public File[] getlogFiles(){	
+	@RequestMapping("/getlogFiles")
+	public void getlogFiles(HttpServletRequest request, HttpServletResponse response){	
 		File f = new File(this.getClass().getResource("/").getPath()+"/logs/");	
+		System.out.println("logpath is:"+f.getPath());
+		JSONObject resultObj = new JSONObject();
 		if(f.exists() && f.isDirectory()){
-			return f.listFiles();
+			JSONObject fileObj = new JSONObject();
+			for(File afile : f.listFiles()){
+				fileObj.put("filepath", afile.getPath());
+				fileObj.put("filename", afile.getPath());
+			}			
+			resultObj.put("data", fileObj);
+			resultObj.put("result", "success");
+		}else{
+			resultObj.put("data", null);
+			resultObj.put("result", "failed");
 		}
-		return null;		
-	} 
+		
+		jsonUtil.out(response, resultObj.toJSONString());
+	}
 	
 	
 }
