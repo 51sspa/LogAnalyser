@@ -203,7 +203,6 @@ public class DataFactory {
 	}
 	
 	
-	
 	/**
 	 * 生成json对象
 	 * @author tianwenchao 2018-09-12
@@ -237,16 +236,19 @@ public class DataFactory {
 	 */
 	@RequestMapping("/getlogFiles")
 	public void getlogFiles(HttpServletRequest request, HttpServletResponse response){	
-		File f = new File(this.getClass().getResource("/").getPath()+"/logs/");	
+		File f = new File(System.getProperty("user.dir")+"/WebContent/data/");	
 		System.out.println("logpath is:"+f.getPath());
 		JSONObject resultObj = new JSONObject();
 		if(f.exists() && f.isDirectory()){
-			JSONObject fileObj = new JSONObject();
+			List<JSONObject> jsonList = new ArrayList<JSONObject>();
+			JSONObject fileObj;
 			for(File afile : f.listFiles()){
+				fileObj = new JSONObject();
 				fileObj.put("filepath", afile.getPath());
-				fileObj.put("filename", afile.getPath());
+				fileObj.put("filename", afile.getName());
+				jsonList.add(fileObj);
 			}			
-			resultObj.put("data", fileObj);
+			resultObj.put("data", jsonList);
 			resultObj.put("result", "success");
 		}else{
 			resultObj.put("data", null);
@@ -255,6 +257,5 @@ public class DataFactory {
 		
 		jsonUtil.out(response, resultObj.toJSONString());
 	}
-	
 	
 }
