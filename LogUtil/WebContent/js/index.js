@@ -68,12 +68,13 @@ $(function() {
 			contentType : 'application/json',
 			success : function(data) {
 				var json = JSON.parse(data);
+				console.log(json);
 				if (json.result && json.result == "success") {
 					$('#importFile').modal('show');
 					var files = json.data;
 					for (var i = 0;i < 3; i++) {
 						if (files[i]) {
-							$('#file' + i).val(files[i].filename);
+							$('#file' + (i + 1)).val(files[i].filename);
 						}
 					}
 				} else {
@@ -89,15 +90,21 @@ $(function() {
 	
 	// 确定
 	$("#okBtn").click(function() {
-		if ($("#file1") && $("#file1").value) {
-			fileName1 = $("#file1").value;
+		fileName1 = "";
+		fileName2 = "";
+		fileName3 = "";
+		
+		if ($("#file1") && $("#file1").val()) {
+			fileName1 = $("#file1").val();
 		}
-		if ($("#file2") && $("#file2").value) {
-			fileName2 = $("#file2").value;
+		if ($("#file2") && $("#file2").val()) {
+			fileName2 = $("#file2").val();
 		}
-		if ($("#file3") && $("#file3").value) {
-			fileName3 = $("#file3").value;
+		if ($("#file3") && $("#file3").val()) {
+			fileName3 = $("#file3").val();
 		}
+		
+		console.log(fileName1 + "  " + fileName2 + "  " +  fileName3);
 
 		$('#importFile').modal('hide');
 	});
