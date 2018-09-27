@@ -30,15 +30,23 @@ function apiPost(url, params, successCallback, failCallback) {
 	});
 };
 
-function loadFiles() {
+//定义文件列表
+var data = [];
+
+function loadFiles(data) {
 	$('#onLodding').modal('show');
 	
-	// apiPost('test/sayHello', null, loadLog);
-	var loadLog = function(data) {
+	$('#onLodding').on('shown.bs.modal', function () {
 		initLogContext(data);
-	};
+	})
 	
-	var testData = [ {
+	
+	// apiPost('test/sayHello', null, loadLog);
+//	var loadLog = function(data) {
+		
+//	};
+	
+	/*var testData = [ {
 		'logIndex' : 1,
 		'logName' : '/js/common/jquery/test1.log',
 		'logType' : 'java',
@@ -50,8 +58,8 @@ function loadFiles() {
 		'logIndex' : 3,
 		'logName' : '/js/common/jquery/test3.log',
 		'logType' : 'C++',
-	} ];
-	loadLog(testData);
+	} ];*/
+	//loadLog(testData);
 };
 
 $(function() {
@@ -93,20 +101,40 @@ $(function() {
 		fileName1 = "";
 		fileName2 = "";
 		fileName3 = "";
+		data = [];
 		
 		if ($("#file1") && $("#file1").val()) {
 			fileName1 = $("#file1").val();
+			var file = {};
+			file["logIndex"] = 1;
+			file["logName"] = fileName1;
+			file["logType"] = "java";
+			data.push(file);
 		}
 		if ($("#file2") && $("#file2").val()) {
 			fileName2 = $("#file2").val();
+			var file = {};
+			file["logIndex"] = 2;
+			file["logName"] = fileName2;
+			file["logType"] = "java";
+			data.push(file);
 		}
 		if ($("#file3") && $("#file3").val()) {
 			fileName3 = $("#file3").val();
+			var file = {};
+			file["logIndex"] = 3;
+			file["logName"] = fileName3;
+			file["logType"] = "C++";
+			data.push(file);
 		}
 		
 		console.log(fileName1 + "  " + fileName2 + "  " +  fileName3);
 
 		$('#importFile').modal('hide');
+	});
+	
+	$('#importFile').on('hidden.bs.modal', function () {  
+		loadFiles(data);
 	});
 
 	$("#exeFilter").click(function() {
@@ -142,5 +170,5 @@ $(function() {
 		});
 	});
 	
-	loadFiles();
+	//loadFiles();
 });

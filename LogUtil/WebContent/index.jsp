@@ -86,7 +86,7 @@
 				<button id="exeFilter" class="btn btn-primary"
 					style="margin-left: 10px; margin-top: -15px;">执行过滤</button>
 				<button id="importBtn" class="btn btn-primary"
-					style="float: right; margin-top: -15px;">导入文件</button>
+					style="float: right; margin-top: -15px;">加载文件</button>
 			</div>
 			<div class="mycontent" id="logPriview"></div>
 		</div>
