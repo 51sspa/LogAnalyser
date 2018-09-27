@@ -236,7 +236,7 @@ public class DataFactory {
 	 */
 	@RequestMapping("/getlogFiles")
 	public void getlogFiles(HttpServletRequest request, HttpServletResponse response){	
-		File f = new File(System.getProperty("user.dir")+"/WebContent/data/");	
+		File f = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath().replace("/WEB-INF/classes", "")+"/data/");	
 		System.out.println("logpath is:"+f.getPath());
 		JSONObject resultObj = new JSONObject();
 		if(f.exists() && f.isDirectory()){
