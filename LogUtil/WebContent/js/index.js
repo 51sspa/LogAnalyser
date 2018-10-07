@@ -17,6 +17,30 @@ function apiPost(url, params, successCallback, failCallback) {
 			if (successCallback) {
 				successCallback(json);
 			} else {
+				console.error(json);
+			}
+		},
+		error : function(e) {
+			if (failCallback) {
+				failCallback(json);
+			} else {
+				console.error(e);
+			}
+		}
+	});
+};
+
+function apiGet(url, successCallback, failCallback) {
+
+	$.ajax({
+		url : url,
+		type : "get",
+		async : false,
+		success : function(data) {
+			var json = data;
+			if (successCallback) {
+				successCallback(json);
+			} else {
 				console.log(json);
 			}
 		},
@@ -30,67 +54,42 @@ function apiPost(url, params, successCallback, failCallback) {
 	});
 };
 
-//定义文件列表
-var data = [];
-
-function loadFiles(data) {
-	$('#onLodding').modal('show');
+$(function() {
+	//默认文件列表
+	var currentData = null;
+	
+	//加载
+	var loadFiles = function() {
+		$('#onLodding').modal('show');
+	};
 	
 	$('#onLodding').on('shown.bs.modal', function () {
-		initLogContext(data);
-	})
+		if(currentData){
+			console.log("***"+new Date());
+			initLogContext(currentData);
+		}else{
+			$('#onLodding').modal('hide');
+			alert("请先加载文件!");
+		}
+	});
 	
-	
-	// apiPost('test/sayHello', null, loadLog);
-//	var loadLog = function(data) {
-		
-//	};
-	
-	/*var testData = [ {
-		'logIndex' : 1,
-		'logName' : '/js/common/jquery/test1.log',
-		'logType' : 'java',
-	}, {
-		'logIndex' : 2,
-		'logName' : '/js/common/jquery/test2.log',
-		'logType' : 'java',
-	}, {
-		'logIndex' : 3,
-		'logName' : '/js/common/jquery/test3.log',
-		'logType' : 'C++',
-	} ];*/
-	//loadLog(testData);
-};
-
-$(function() {
 	var fileName1 = "";
 	var fileName2 = "";
 	var fileName3 = "";
 	
 	$("#importBtn").click(function() {
-		$.ajax({
-			url : "dataFactory/getlogFiles",
-			type : "post",
-			async : false,
-			data : {},
-			contentType : 'application/json',
-			success : function(data) {
-				var json = JSON.parse(data);
-				console.log(json);
-				if (json.result && json.result == "success") {
-					$('#importFile').modal('show');
-					var files = json.data;
-					for (var i = 0;i < 3; i++) {
-						if (files[i]) {
-							$('#file' + (i + 1)).val(files[i].filename);
-						}
+		
+		apiPost('dataFactory/getlogFiles', null, function(json){
+			if('success'==json.result){
+				$('#importFile').modal('show');
+				var files = json.data;
+				for (var i = 0;i < 3; i++) {
+					if (files[i]) {
+						$('#file' + (i + 1)).val(files[i].logPath);
 					}
-				} else {
-					alert("error");
 				}
-			},
-			error : function(e) {
-				alert("获取文件失败");
+			}else {
+				console.error("load data error!");
 			}
 		});
 		
@@ -108,6 +107,7 @@ $(function() {
 			var file = {};
 			file["logIndex"] = 1;
 			file["logName"] = fileName1;
+			file["logPath"] = fileName1;
 			file["logType"] = "java";
 			data.push(file);
 		}
@@ -116,6 +116,7 @@ $(function() {
 			var file = {};
 			file["logIndex"] = 2;
 			file["logName"] = fileName2;
+			file["logPath"] = fileName2;
 			file["logType"] = "java";
 			data.push(file);
 		}
@@ -124,51 +125,51 @@ $(function() {
 			var file = {};
 			file["logIndex"] = 3;
 			file["logName"] = fileName3;
+			file["logPath"] = fileName3;
 			file["logType"] = "C++";
 			data.push(file);
 		}
-		
-		console.log(fileName1 + "  " + fileName2 + "  " +  fileName3);
+		currentData = data;
+		console.dir(currentData);
 
 		$('#importFile').modal('hide');
 	});
 	
-	$('#importFile').on('hidden.bs.modal', function () {  
-		loadFiles(data);
-	});
+	$('#importFile').on('hidden.bs.modal', loadFiles);
 
 	$("#exeFilter").click(function() {
+		console.log("exeFilter click" + new Date());
+		var logLevel = $("#logLevel").val();
+		var processName = $("#processName").val();
+		var startTime = $("#startTime").val();
+		var endTime = $("#endTime").val();
+		var key = $("#key").val();
+		if(!baseParas){
+			baseParas = {};
+		}
+		if(logLevel){
+			baseParas["logLevel"] = logLevel;
+		}
+		if(processName){
+			baseParas["processName"] = processName;
+		}
+		if(startTime){
+			baseParas["startTime"] = startTime;
+		}
+		if(endTime){
+			baseParas["endTime"] = endTime;
+		}
+		if(key){
+			baseParas["key"] = key;
+		}
+	
 		$(this).button('loading').delay(1000).queue(function() {
 
-			var url = "test/sayHello";
-			var params = {};
-			params["fileName"] = "22222";
-			params["processName"] = "aaa";
-
-			$.ajax({
-				url : url,
-				type : "post",
-				async : false,
-				data : $.toJSON(params),
-				contentType : 'application/json',
-				success : function(data) {
-					var json = JSON.parse(data);
-					if (json.success) {
-						// alert(json.msg);
-					} else {
-						alert("error");
-					}
-				},
-				error : function(e) {
-					alert("error2");
-				}
-			});
-
+			loadFiles();
+			
 			$(this).button('reset');
 			$(this).dequeue();
 
 		});
 	});
-	
-	//loadFiles();
 });

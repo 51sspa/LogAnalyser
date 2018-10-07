@@ -7,8 +7,9 @@
 <title>日志分析工具</title>
 
 <link rel="stylesheet" href="./css/base.css" type="text/css"></link>
-<link rel="stylesheet" href="./css/bootstarp/admin-all-demo.css"
-	type="text/css"></link>
+ 
+<link rel="stylesheet" href="./css/bootstarp/admin-all-demo.css" type="text/css"></link>
+
 <link rel="stylesheet" href="./css/file/fileinput.css" type="text/css"></link>
 <link rel="stylesheet" href="./css/file/theme.css" type="text/css"></link>
 <link rel="stylesheet" href="./css/bootstarp/bootstrap.css"

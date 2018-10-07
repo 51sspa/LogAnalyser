@@ -45,8 +45,25 @@ a {
 	width: 100%;
 }
 
-.log-display {
+.log_path {
+	word-break: break-all;
+	word-wrap: break-word;
+	color: #555;
+	
+	background-color: #f8f8f8;
+    border: 1px solid #dedede;
+    padding:4px;
+    margin: 0px 2px 0px 0px;
+}
+
+.log_display {
 	flex: 1;
+	word-break: break-all;
+	word-wrap: break-word;
+	color: #555;
+}
+
+.log_display pre {
 	word-break: break-all;
 	word-wrap: break-word;
 	color: #555;
@@ -54,26 +71,26 @@ a {
 	overflow: scroll;
 	border: 1px solid #dedede;
 	border-radius: 0;
-	height: 100%;
+	height: 90%;
 	margin-right: 2px;
 }
 
-.log-text-lineNO {
+.log_text_lineNO {
 	color: gray;
 }
 
-.log-text-time {
+.log_text_time {
 	color: #5eb95e;
 }
 
-.log-text-level {
+.log_text_level {
 	color: #dd514c;
 }
 
-.log-text-pre {
+.log_text_pre {
 	color: #dd51ff;
 }
 
-.log-text-context {
+.log_text_context {
 	padding-right: 20px;
 }

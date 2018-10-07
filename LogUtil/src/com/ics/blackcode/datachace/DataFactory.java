@@ -22,7 +22,7 @@ public class DataFactory {
 	
 	/** 以下变量保存上一次查询条件   */
 	/** 标识日志文件  */
-	private static String logFileID = "111";
+	private static String logIndex = "0";
 	/** 查询日志开始时间  */
 	private static String startTime = "";
 	/** 查询日志结束时间  */
@@ -59,7 +59,7 @@ public class DataFactory {
 	public void getLogInfosByCon(HttpServletRequest request, HttpServletResponse response){
 		
 		JSONObject paramJson = jsonUtil.getParamters(request);
-		logFileID = paramJson.getString("logFileID");
+		logIndex = paramJson.getString("logIndex");
 		startTime = paramJson.getString("startTime");
 		endTime = paramJson.getString("endTime");
 		prossNo = paramJson.getString("prossNo");
@@ -98,7 +98,7 @@ public class DataFactory {
 	 * 这个方法是滚动条滑动时调用
 	 * 返回json数据
 	 * @author tianwenchao 2018-09-16
-	 * @param logFileID 日志文件标识，读取哪个日志文件
+	 * @param logIndex 日志文件标识，读取哪个日志文件
 	 * @param  startindex  开始位置行数
 	 * @param  rowcount  返回日志行数
 	 * @return JSONObject  
@@ -107,30 +107,29 @@ public class DataFactory {
 	public void getLogInfosByScroll(HttpServletRequest request, HttpServletResponse response){
 		
 		JSONObject paramJson = jsonUtil.getParamters(request);
-		logFileID = paramJson.getString("logFileID");
-		int startindex = Integer.parseInt(paramJson.getString("startTime"));
-		int rowcount = Integer.parseInt(paramJson.getString("rowcount"));
+		logIndex = paramJson.getString("logIndex");
+		String startindex = paramJson.getString("startTime");
+		int rowcount = Integer.parseInt(paramJson.getString("rowCount"));
 		
 				
-		JSONObject fileJson = new JSONObject();
 		/** 此处为构造数据，后面替换成小文的App.readLog 方法 */
 		List<JSONObject> jsonList = new ArrayList<JSONObject>();
 		for(int i=0;i<1000;i++){
-			jsonList.add(getJSONObject("2018-08-26 12:08:57,70"+i,"10"+i,"INFO","[org.jboss.seam.Component]","(main) Component class should be serializable: fixFieldManager"));
+		    String ms = ""+i; 
+		    if(i<10) {
+	            ms = "00"+i;
+		    }else if(i<100){
+                ms = "0"+i;
+		    }
+			jsonList.add(getJSONObject("2018-08-26 12:08:57,"+ms,"10"+i,"INFO","[org.jboss.seam.Component]","(main) Component class should be serializable: fixFieldManager"));
 		}
-		try {
-			fileJson.put("count", jsonList.size());
-			fileJson.put("index", 1);
-			fileJson.put("data", jsonList);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		
 		dataFilter(jsonList, 1000);
 		
 		System.out.println("jsonList.size:"+jsonList.size());
 		JSONObject resultObj = new JSONObject();
-		resultObj.put("data", fileJson);
+		resultObj.put("data", jsonList);
+		resultObj.put("count", jsonList.size());
+		resultObj.put("logIndex", logIndex);
 		resultObj.put("result", "success");
 
 		jsonUtil.out(response, resultObj.toJSONString());		
@@ -216,11 +215,11 @@ public class DataFactory {
 	private static JSONObject getJSONObject(String logTime,String prossNo,String level,String pre,String context){
 		try {
 			JSONObject aa1 = new JSONObject();
-			aa1.put("context",  context);
-			aa1.put("pre",  pre);
-			aa1.put("time",  logTime);
-			aa1.put("level",  level);
-			aa1.put("prossNo",  prossNo);			
+            aa1.put("time",  logTime);
+            aa1.put("prossNo",  prossNo);  
+            aa1.put("level",  level); 
+            aa1.put("pre",  pre);   
+			aa1.put("context",  context);	
 			return aa1;
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -242,10 +241,13 @@ public class DataFactory {
 		if(f.exists() && f.isDirectory()){
 			List<JSONObject> jsonList = new ArrayList<JSONObject>();
 			JSONObject fileObj;
+			int idx = 0;
 			for(File afile : f.listFiles()){
 				fileObj = new JSONObject();
-				fileObj.put("filepath", afile.getPath());
-				fileObj.put("filename", afile.getName());
+				idx++;
+                fileObj.put("logIndex", idx);
+				fileObj.put("logPath", afile.getPath());
+				fileObj.put("logName", afile.getName());
 				jsonList.add(fileObj);
 			}			
 			resultObj.put("data", jsonList);
@@ -257,5 +259,34 @@ public class DataFactory {
 		
 		jsonUtil.out(response, resultObj.toJSONString());
 	}
+	
+	 /**
+     * 为了确保前后台属性显示一直，日志显示模版从后台读取
+     * @author guofeipeng 2018-10-7
+     * @return 日志文件显示模版
+     */
+    @RequestMapping("/getlogTmplate")
+    public void getlogTmplate(HttpServletRequest request, HttpServletResponse response)
+    {  
+        // TODO:请注意,前后台日志模版需要保持一致(后台解析属性一旦变更，这里的模版需要同步更新)
+        // "<span class='log_text_aaa'>#AAA#:</span>" 
+        // 这里的aaa表示后台日志的一个属性;AAA为属性名全大写,请保持风格一致,否则可能无法正常显示
+        String logIndex = request.getParameter("logIndex");
+        
+        StringBuffer bf = new StringBuffer();
+        //一行的span元素，用时间字符串为id
+        bf.append("<span class='log_text' id='#TIME#'>");
+        //独立的一个日志子属性
+        bf.append("<span class='log_text_lineNO'>#LINENO#:</span> ");
+        bf.append("<span class='log_text_time'>#TIME#</span> ");
+        bf.append("<span class='log_text_prossNo'>#PROSSNO#</span> ");
+        bf.append("<span class='log_text_level'>#LEVEL#</span> ");
+        bf.append("<span class='log_text_pre'>#PRE#</span> ");
+        bf.append("<span class='log_text_context'>#CONTEXT#</span> ");
+        //单行结束+换行
+        bf.append("</span><br/>");
+        
+        jsonUtil.out(response, bf.toString());   
+    }
 	
 }

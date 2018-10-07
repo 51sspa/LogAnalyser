@@ -12,34 +12,41 @@ String.prototype.startWith=function(str){
 //日志联动开关
 var logScrollFlag = true;
 
-var fileCount = -1;
+//单行日志渲染
+var lineStaticStr = "<span class='log_text' id='#TIMESTR#'><span class='log_text_lineNO'>#LINENO#:</span> <span class='log_text_time'>#TIME#</span> <span class='log_text_prossNo'>#PROSSNO#</span> <span class='log_text_level'>#LEVEL#</span> <span class='log_text_pre'>#PRE#</span> <span class='log_text_context'>#CONTEXT#</span> </span><br/>"; 
+// 从后台获取显示模版
+var url_tlp = 'dataFactory/getlogTmplate';
+apiGet(url_tlp, function(json){
+	if(json && json.length >0){
+		console.log(json);
+		lineStaticStr = json;
+	}
+});
+
+//日志查询的基本过滤参数集合
+var baseParas = {};
+
 function initLogContext(data){
+	console.log(new Date()+"****initLogContext");
 	//单行日志渲染DIV
-	var oneStaticDiv = '<div id="log_display_#INDEX#" class="log-display" onscroll="funcsrcoll(this, #COUNT#)"><pre></pre></div>'; 
-	var preInitDIV = function(count, index){
-		return oneStaticDiv.replace('#INDEX#', index).replace('#COUNT#', count);
+	var oneStaticDiv = '<div class="log_display"><p class="log_path">#LOGPATH#</p><pre id="log_display_#INDEX#" onscroll="funcsrcoll(this, #COUNT#)"></pre></div>'; 
+	var preInitDIV = function(data, count){
+		return oneStaticDiv.replace('#INDEX#', data.logIndex).replace('#COUNT#', count).replace('#LOGPATH#', data.logPath);
 	};
 	
 	//单个日志数据读取后加载
-	var startInitData = function(data){
-		console.dir(data);
-		$("#log_display_"+(data.index)+" pre").append(formatData(data.data));
+	var startInitData = function(onedata){
+		$("#log_display_"+(onedata.logIndex)).append(formatData(onedata.data));
 	};
 	
-	//单行日志渲染
-	var lineStaticStr = '<a><span class="lineSP" id="#TIME#"><span class="log-text-lineNO">#LINENO#:</span> <span class="log-text-time">#TIME#</span> <span class="log-text-level">#LEVEL#</span> <span class="log-text-pre">#PRE#</span> <span class="log-text-context">#CONTEXT#</span></span><br/></a>'; 
 	function replaceData(arr, i){
-		var lineData = arr[i]; 
-		var timeStr = lineData.time.substring(0,16);
-		
 	    var result = lineStaticStr;
-		
-		result = result.replaceAll('#TIMESTR#', timeStr);
-	    result = result.replaceAll('#LINENO#', (i+1));
-	    result = result.replaceAll('#TIME#', lineData.time);
-	    result = result.replaceAll('#LEVEL#', lineData.level);
-	    result = result.replaceAll('#PRE#', lineData.pre);
-	    result = result.replaceAll('#CONTEXT#', lineData.context);
+	    
+		var lineData = arr[i]; 
+		lineData['lineNO'] = (i+1);
+		for(var x in lineData){
+			result = result.replaceAll('#'+ String(x).toUpperCase() +'#', lineData[x]);
+		}
 		return result;
 	}
 	
@@ -52,35 +59,40 @@ function initLogContext(data){
 		return result;
 	};
 	
+	var url = 'dataFactory/getLogInfosByScroll';
 	
-	fileCount = data.length;
-
-	var url = 'test/sayHello';
 	$("#logPriview").empty();
-	for(var i=0; i<fileCount; i++){
+	for(var i=0; i<data.length; i++){
 		var oneData = data[i];
-		$("#logPriview").append(preInitDIV(fileCount,oneData.logIndex));
+		$("#logPriview").append(preInitDIV(oneData, data.length));
 		
-		var params = oneData;
-		url = './data/log'+(i+1)+'.json';
-		apiPost(url, params, startInitData);
+		var params = baseParas;
+		params["logIndex"] = oneData.logIndex;
+		params["rowCount"] = 200;
 		
-		$('#onLodding').modal('hide');
+		apiPost(url, params, function(json){
+			if('success' == json.result){
+				startInitData(json);
+			}else{
+				console.error("error load data");
+			}
+			$('#onLodding').modal('hide');
+		});
 	}
 
 }
 
-
 //div 滚动监听
 function funcsrcoll(obj, count)
 {
+	var oid = obj.id;
     var idx =  parseInt(obj.id.split('log_display_')[1]);
 	if(logScrollFlag && idx<count){
 		const ac = document.querySelector('#logPriview');
 		const lc = ac.querySelector('#log_display_' + idx);
-		const rc = ac.querySelector('#log_display_' + (idx+1))
+		const rc = ac.querySelector('#log_display_' + (idx+1));
 		
-		const rc0 = rc.querySelector(".lineSP");
+		const rc0 = rc.querySelector(".log_text");
 		
 		var toped_elmt = getTopedElement(lc);
 		if(toped_elmt && toped_elmt.id){
@@ -92,27 +104,29 @@ function funcsrcoll(obj, count)
 					rc.scrollTop =  right_st;
 				}
 			}
+		}else{
+			rc.scrollTop =  0;
 		}
 	}
 }
 
 function getTopedElement(searchObj)
 {
-	var search_arr = searchObj.querySelectorAll(".lineSP");
-	
-	var ssTop = searchObj.scrollTop;
 	var topedSP = null;
-	for(var i = 0; i<search_arr.length; i++)
+	
+	var search_arr = searchObj.querySelectorAll(".log_text");
+	for(var i = search_arr.length-1; i>-1; i--)
 	{
-		if(ssTop < search_arr[i].offsetTop){
-			ssTop = search_arr[i].offsetTop;
-			//topedSP = search_arr[i];
+		var ct = search_arr[i].offsetTop;
+		if(search_arr[i].offsetTop >= searchObj.scrollTop){
 			continue;
 		}else{
-			topedSP = search_arr[i+1];
-			//break;
+			var vi = (i>-1)?(i+2):(0)
+			topedSP = search_arr[Math.min(vi,search_arr.length-1)];
+			break;
 		}
 	}
+	
 	return topedSP;
 }
 

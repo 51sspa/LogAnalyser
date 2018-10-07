@@ -7,20 +7,22 @@ public class testData {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		//System.out.println("¡¾startTime¡¿:"+new Date().getTime());	
+		//System.out.println("ï¿½ï¿½startTimeï¿½ï¿½:"+new Date().getTime());	
 		
 		//DataFactory.getLogInfosByCon("", null, null, null, null, null, null);
 		
-		//System.out.println("¡¾endTime¡¿"+new Date().getTime());
+		//System.out.println("ï¿½ï¿½endTimeï¿½ï¿½"+new Date().getTime());
 		DataFactory dd = new DataFactory();
+		/*
 		File[] fs = dd.getlogFiles();
 		if(null==fs){
-			System.out.println("ÎÞ·¨ÕÒµ½ÈÕÖ¾ÎÄ¼þ");
+			System.out.println("ï¿½Þ·ï¿½ï¿½Òµï¿½ï¿½ï¿½Ö¾ï¿½Ä¼ï¿½");
 		}else{
 			for(File aa : fs){
 				System.out.println(aa.getName()+" : "+aa.getPath());
 			}
 		}
+		*/
 	}
 
 }
