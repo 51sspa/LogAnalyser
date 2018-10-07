@@ -3,6 +3,8 @@ package com.ics.blackcode.datachace;
 import java.io.File;
 import java.util.Date;
 
+import com.alibaba.fastjson.JSON;
+
 public class testData {
 
 	public static void main(String[] args) {
@@ -12,7 +14,7 @@ public class testData {
 		//DataFactory.getLogInfosByCon("", null, null, null, null, null, null);
 		
 		//System.out.println("��endTime��"+new Date().getTime());
-		DataFactory dd = new DataFactory();
+		//DataFactory dd = new DataFactory();
 		/*
 		File[] fs = dd.getlogFiles();
 		if(null==fs){

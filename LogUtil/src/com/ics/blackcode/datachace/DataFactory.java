@@ -1,6 +1,7 @@
 package com.ics.blackcode.datachace;
 
 import java.io.File;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
+import com.ics.blackcode.loganalyser.Log;
+import com.ics.blackcode.loganalyser.LogReader;
 import com.ics.util.JsonUtil;
 
 @Controller
@@ -35,6 +38,14 @@ public class DataFactory {
 	private static String pre = "";
 	/** 内容关键字  */
 	private static String context = "";
+	/** 最大返回行数 */
+	private static int maxReturnNum = 10000;
+	
+	/** 缓存文件列表  */
+	private List<JSONObject> logFileList = new ArrayList<JSONObject>();
+	
+	/** 日志文件的命名正则表达式  */
+	private String logPattern = "^(?<date>\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2})  \\[ (?<tname>\\w+):\\d+ \\] (?<logger>[\\w\\.]+):(?<location>\\d+) - \\[ (?<level>\\w+) \\] (?<content>.*)$";
 	
 	public SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
 	
@@ -44,9 +55,9 @@ public class DataFactory {
 
 	/**
 	 * 这个方法是点击查询按钮时调用
-	 * 根据条件获取json数据 默认符合条件的数据最多返回一万行
+	 * 根据条件获取json数据 默认符合条件的数据最多返回 maxReturnNum行
 	 * @author tianwenchao 2018-09-12
-	 * @param logFileID 日志文件ID标识唯一
+	 * @param logIndex 日志文件ID标识唯一
 	 * @param startTime 过滤开始时间
 	 * @param endTime 过滤结束时间
 	 * @param prossNo 进程号
@@ -71,18 +82,27 @@ public class DataFactory {
 		
 		/** 此处为构造数据，后面替换成小文的App.readLog 方法 */
 		List<JSONObject> jsonList = new ArrayList<JSONObject>();
-		for(int i=0;i<100000;i++){
-			jsonList.add(getJSONObject("2018-08-26 12:08:57,70"+i,"10"+i,"INFO","[org.jboss.seam.Component]","(main) Component class should be serializable: fixFieldManager"));
-		}
-		try {
-			fileJson.put("count", jsonList.size());
-			fileJson.put("index", 1);
-			fileJson.put("data", jsonList);
-		} catch (JSONException e) {
-			e.printStackTrace();
+//		for(int i=0;i<100000;i++){
+//			jsonList.add(getJSONObject("2018-08-26 12:08:57,70"+i,"10"+i,"INFO","[org.jboss.seam.Component]","(main) Component class should be serializable: fixFieldManager"));
+//		}
+//		try {
+//			fileJson.put("count", jsonList.size());
+//			fileJson.put("index", 1);
+//			fileJson.put("data", jsonList);
+//		} catch (JSONException e) {
+//			e.printStackTrace();
+//		}
+//		
+		LogReader reader = new LogReader(getLogFileObject(logIndex), logPattern);
+		List<Log> logs = reader.getLogList(0, maxReturnNum*10);
+		JSONObject temp;
+		for(Log aLog : logs){	
+			temp = JSONObject.parseObject(JSONObject.toJSONString(aLog));
+			temp.put("time", sdf.format(new Date((long) temp.get("date"))));
+			jsonList.add(temp);			
 		}
 		
-		dataFilter(jsonList, 10000);
+		jsonList = dataFilter(jsonList, maxReturnNum);
 		
 		System.out.println("jsonList.size:"+jsonList.size());
 		
@@ -99,8 +119,8 @@ public class DataFactory {
 	 * 返回json数据
 	 * @author tianwenchao 2018-09-16
 	 * @param logIndex 日志文件标识，读取哪个日志文件
-	 * @param  startindex  开始位置行数
-	 * @param  rowcount  返回日志行数
+	 * @param  startIndex  开始位置行数
+	 * @param  rowCount  返回日志行数
 	 * @return JSONObject  
 	 */
 	@RequestMapping("/getLogInfosByScroll")
@@ -108,22 +128,41 @@ public class DataFactory {
 		
 		JSONObject paramJson = jsonUtil.getParamters(request);
 		logIndex = paramJson.getString("logIndex");
-		String startindex = paramJson.getString("startTime");
-		int rowcount = Integer.parseInt(paramJson.getString("rowCount"));
-		
-				
-		/** 此处为构造数据，后面替换成小文的App.readLog 方法 */
-		List<JSONObject> jsonList = new ArrayList<JSONObject>();
-		for(int i=0;i<1000;i++){
-		    String ms = ""+i; 
-		    if(i<10) {
-	            ms = "00"+i;
-		    }else if(i<100){
-                ms = "0"+i;
-		    }
-			jsonList.add(getJSONObject("2018-08-26 12:08:57,"+ms,"10"+i,"INFO","[org.jboss.seam.Component]","(main) Component class should be serializable: fixFieldManager"));
+		//读取行数默认第一行
+		int startIndex = -1;
+		if(null == paramJson.getString("startIndex")){
+			startIndex = 0;
+		}else{
+			startIndex = Integer.parseInt(paramJson.getString("startIndex"));
 		}
-		dataFilter(jsonList, 1000);
+		//返回行数默认1000行
+		int rowcount = 1000;
+		if(null == paramJson.getString("rowCount")){
+			rowcount = 1000;
+		}else{
+			rowcount = Integer.parseInt(paramJson.getString("rowCount"));
+		}
+			
+		List<JSONObject> jsonList = new ArrayList<JSONObject>();
+//		for(int i=0;i<1000;i++){
+//		    String ms = ""+i; 
+//		    if(i<10) {
+//	            ms = "00"+i;
+//		    }else if(i<100){
+//                ms = "0"+i;
+//		    }
+//			jsonList.add(getJSONObject("2018-08-26 12:08:57,"+ms,"10"+i,"INFO","[org.jboss.seam.Component]","(main) Component class should be serializable: fixFieldManager"));
+//		}
+		LogReader reader = new LogReader(getLogFileObject(logIndex), logPattern);
+		List<Log> logs = reader.getLogList(startIndex, rowcount*10);
+		JSONObject temp;
+		for(Log aLog : logs){	
+			temp = JSONObject.parseObject(JSONObject.toJSONString(aLog));
+			temp.put("time", sdf.format(new Date((long) temp.get("date"))));
+			jsonList.add(temp);			
+		}
+		System.out.println("json: "+jsonList.get(0));
+		jsonList = dataFilter(jsonList, rowcount);
 		
 		System.out.println("jsonList.size:"+jsonList.size());
 		JSONObject resultObj = new JSONObject();
@@ -201,6 +240,21 @@ public class DataFactory {
 		return returnList;
 	}
 	
+	/**
+	 * 根据日志标识返回日志文件全路径
+	 * @author tianwenchao 2018-10-07 
+	 * @param index 日志标识
+	 * @return String
+	 */
+	private String getLogFileObject(String index){
+		for(JSONObject fileObj : logFileList){
+			if(index.equals(fileObj.getString("logIndex"))){
+				return fileObj.getString("logPath");
+			}
+		}
+		return "";
+	}
+	
 	
 	/**
 	 * 生成json对象
@@ -252,6 +306,8 @@ public class DataFactory {
 			}			
 			resultObj.put("data", jsonList);
 			resultObj.put("result", "success");
+			//在返回结果同时，将日志文件列表缓存
+			logFileList = jsonList;
 		}else{
 			resultObj.put("data", null);
 			resultObj.put("result", "failed");
@@ -277,12 +333,12 @@ public class DataFactory {
         //一行的span元素，用时间字符串为id
         bf.append("<span class='log_text' id='#TIME#'>");
         //独立的一个日志子属性
-        bf.append("<span class='log_text_lineNO'>#LINENO#:</span> ");
+        bf.append("<span class='log_text_location'>#LOCATION#:</span> ");
         bf.append("<span class='log_text_time'>#TIME#</span> ");
-        bf.append("<span class='log_text_prossNo'>#PROSSNO#</span> ");
+        bf.append("<span class='log_text_pid'>#PID#</span> ");
         bf.append("<span class='log_text_level'>#LEVEL#</span> ");
-        bf.append("<span class='log_text_pre'>#PRE#</span> ");
-        bf.append("<span class='log_text_context'>#CONTEXT#</span> ");
+        bf.append("<span class='log_text_tname'>#TNAME#</span> ");
+        bf.append("<span class='log_text_content'>#CONTENT#</span> ");
         //单行结束+换行
         bf.append("</span><br/>");
         
