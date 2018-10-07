@@ -10,18 +10,21 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.ics.blackcode.loganalyser.Log;
 import com.ics.blackcode.loganalyser.LogReader;
+import com.ics.blackcode.loganalyser.LogReaderUtil;
 import com.ics.util.JsonUtil;
 
 @Controller
 @RequestMapping("/dataFactory")
 public class DataFactory {
+	
+	private static final Logger logger = Logger.getLogger(DataFactory.class);
 	
 	/** 以下变量保存上一次查询条件   */
 	/** 标识日志文件  */
@@ -43,9 +46,6 @@ public class DataFactory {
 	
 	/** 缓存文件列表  */
 	private List<JSONObject> logFileList = new ArrayList<JSONObject>();
-	
-	/** 日志文件的命名正则表达式  */
-	private String logPattern = "^(?<date>\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2})  \\[ (?<tname>\\w+):\\d+ \\] (?<logger>[\\w\\.]+):(?<location>\\d+) - \\[ (?<level>\\w+) \\] (?<content>.*)$";
 	
 	public SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
 	
@@ -80,20 +80,10 @@ public class DataFactory {
 				
 		JSONObject fileJson = new JSONObject();
 		
-		/** 此处为构造数据，后面替换成小文的App.readLog 方法 */
 		List<JSONObject> jsonList = new ArrayList<JSONObject>();
-//		for(int i=0;i<100000;i++){
-//			jsonList.add(getJSONObject("2018-08-26 12:08:57,70"+i,"10"+i,"INFO","[org.jboss.seam.Component]","(main) Component class should be serializable: fixFieldManager"));
-//		}
-//		try {
-//			fileJson.put("count", jsonList.size());
-//			fileJson.put("index", 1);
-//			fileJson.put("data", jsonList);
-//		} catch (JSONException e) {
-//			e.printStackTrace();
-//		}
-//		
-		LogReader reader = new LogReader(getLogFileObject(logIndex), logPattern);
+
+		LogReader reader =LogReaderUtil.getReader(getLogFileObject(logIndex));
+		//此处因为有过滤条件，一次取十倍，再从其中取 maxReturnNum 的日志。后面优化
 		List<Log> logs = reader.getLogList(0, maxReturnNum*10);
 		JSONObject temp;
 		for(Log aLog : logs){	
@@ -103,8 +93,7 @@ public class DataFactory {
 		}
 		
 		jsonList = dataFilter(jsonList, maxReturnNum);
-		
-		System.out.println("jsonList.size:"+jsonList.size());
+		logger.info("jsonList.size:"+jsonList.size());		
 		
 		JSONObject resultObj = new JSONObject();
 		resultObj.put("data", fileJson);
@@ -144,16 +133,9 @@ public class DataFactory {
 		}
 			
 		List<JSONObject> jsonList = new ArrayList<JSONObject>();
-//		for(int i=0;i<1000;i++){
-//		    String ms = ""+i; 
-//		    if(i<10) {
-//	            ms = "00"+i;
-//		    }else if(i<100){
-//                ms = "0"+i;
-//		    }
-//			jsonList.add(getJSONObject("2018-08-26 12:08:57,"+ms,"10"+i,"INFO","[org.jboss.seam.Component]","(main) Component class should be serializable: fixFieldManager"));
-//		}
-		LogReader reader = new LogReader(getLogFileObject(logIndex), logPattern);
+
+		LogReader reader =LogReaderUtil.getReader(getLogFileObject(logIndex));
+		//此处因为有过滤条件，一次取十倍，再从其中取 maxReturnNum 的日志。后面优化
 		List<Log> logs = reader.getLogList(startIndex, rowcount*10);
 		JSONObject temp;
 		for(Log aLog : logs){	
@@ -161,10 +143,9 @@ public class DataFactory {
 			temp.put("time", sdf.format(new Date((long) temp.get("date"))));
 			jsonList.add(temp);			
 		}
-		System.out.println("json: "+jsonList.get(0));
+		logger.info("json[0]: "+jsonList.get(0));		
 		jsonList = dataFilter(jsonList, rowcount);
-		
-		System.out.println("jsonList.size:"+jsonList.size());
+		logger.info("jsonList.size:"+jsonList.size());	
 		JSONObject resultObj = new JSONObject();
 		resultObj.put("data", jsonList);
 		resultObj.put("count", jsonList.size());
@@ -234,7 +215,8 @@ public class DataFactory {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();			
+			e.printStackTrace();	
+			logger.error(e);
 		}	
 		
 		return returnList;
@@ -254,33 +236,7 @@ public class DataFactory {
 		}
 		return "";
 	}
-	
-	
-	/**
-	 * 生成json对象
-	 * @author tianwenchao 2018-09-12
-	 * @param logTime
-	 * @param prossNo
-	 * @param level
-	 * @param pre
-	 * @param context
-	 * @return JSONObject 
-	 */
-	private static JSONObject getJSONObject(String logTime,String prossNo,String level,String pre,String context){
-		try {
-			JSONObject aa1 = new JSONObject();
-            aa1.put("time",  logTime);
-            aa1.put("prossNo",  prossNo);  
-            aa1.put("level",  level); 
-            aa1.put("pre",  pre);   
-			aa1.put("context",  context);	
-			return aa1;
-		} catch (JSONException e) {
-			e.printStackTrace();
-			return new JSONObject();
-		}
-	}
-	
+		
 	/**
 	 * 获取log日志文件数组,目录为 class同级logs目录下文件
 	 * 如果目录不存在返回null
@@ -290,7 +246,7 @@ public class DataFactory {
 	@RequestMapping("/getlogFiles")
 	public void getlogFiles(HttpServletRequest request, HttpServletResponse response){	
 		File f = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath().replace("/WEB-INF/classes", "")+"/data/");	
-		System.out.println("logpath is:"+f.getPath());
+		logger.info("logpath is:"+f.getPath());
 		JSONObject resultObj = new JSONObject();
 		if(f.exists() && f.isDirectory()){
 			List<JSONObject> jsonList = new ArrayList<JSONObject>();
