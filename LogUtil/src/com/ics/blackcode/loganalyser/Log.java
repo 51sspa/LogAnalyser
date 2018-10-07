@@ -26,6 +26,8 @@ public class Log {
 	private long location;
 	//纯日志内容，客户调用日志类时所传递的内容
 	private String content;
+	//日志在文件中的偏移量
+	private long position;
 	//日志内容，打印工具所打印的完整的日志内容
 	private String log;
 	
@@ -102,7 +104,15 @@ public class Log {
 	{
 		this.log = log;
 	}
-	
+	public Log setPosition(long position)
+	{
+		this.position = position;
+		return this;
+	}
+	public long getPosition()
+	{
+		return position;
+	}
 	
 
 }

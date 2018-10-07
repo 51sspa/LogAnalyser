@@ -132,6 +132,7 @@ public class LogReader {
 	 */
 	private Log readLine(StringBuilder preLineContent, int maxSearchLines) throws IOException
 	{
+		long position = sourcee.getFilePointer();
 		String phyLine = sourcee.readLine();
 		if(phyLine == null)
 		{
@@ -141,7 +142,7 @@ public class LogReader {
 		{
 			if(this.pattern.match(phyLine))
 			{
-				return this.pattern.getLog();
+				return this.pattern.getLog().setPosition(position);
 			}
 			else
 			{
