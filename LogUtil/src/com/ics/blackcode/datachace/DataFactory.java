@@ -42,7 +42,10 @@ public class DataFactory {
 	/** 内容关键字  */
 	private static String context = "";
 	/** 最大返回行数 */
-	private static int maxReturnNum = 10000;
+	private static int maxReturnNum = 1000;
+	
+	//读取行数默认第一行
+	private int startScroolIndex = 0;
 	
 	/** 缓存文件列表  */
 	private List<JSONObject> logFileList = new ArrayList<JSONObject>();
@@ -70,25 +73,24 @@ public class DataFactory {
 	public void getLogInfosByCon(HttpServletRequest request, HttpServletResponse response){
 		logger.info("begin to getLogInfosByCon。");
 		JSONObject paramJson = jsonUtil.getParamters(request);	
+		logIndex = paramJson.getString("logIndex");
 		startTime = paramJson.getString("startTime");
 		endTime = paramJson.getString("endTime");
 		prossNo = paramJson.getString("prossNo");
 		level = paramJson.getString("level").toUpperCase();
-		pre = paramJson.getString("pre");
 		context = paramJson.getString("context");	
 		logger.info("getLogInfosByCon startTime："+startTime+" endTime:"+ endTime +" prossNo:"+ prossNo +" level:"+ level + " pre:"+ pre + " context:"+ context);		
-		JSONObject fileJson = new JSONObject();
-		
+				
 		List<JSONObject> jsonList = new ArrayList<JSONObject>();
 
 		LogReader reader =LogReaderUtil.getReader(getLogFileObject(logIndex));
 		
 		jsonList = getResultList(jsonList,reader,0,maxReturnNum);
-		
-		logger.info("jsonList.size:"+jsonList.size());		
-		
+				
 		JSONObject resultObj = new JSONObject();
-		resultObj.put("data", fileJson);
+		resultObj.put("data", jsonList);	
+		resultObj.put("count", jsonList.size());
+		resultObj.put("logIndex", logIndex);
 		resultObj.put("result", "success");
 
 		jsonUtil.out(response, resultObj.toJSONString());	
@@ -110,14 +112,16 @@ public class DataFactory {
 		logger.info("begin to getLogInfosByScroll。");
 		JSONObject paramJson = jsonUtil.getParamters(request);
 		logIndex = paramJson.getString("logIndex");
-		//读取行数默认第一行
-		int startIndex = -1;
-		if(null == paramJson.getString("startIndex")){
-			startIndex = 0;
-		}else{
-			startIndex = Integer.parseInt(paramJson.getString("startIndex"));
+		if("1".equals(logIndex))
+		{
+			if(null == paramJson.getString("startIndex")){
+				startScroolIndex = 0;
+			}else{
+				startScroolIndex = Integer.parseInt(paramJson.getString("startIndex"));
+			}
+			startScroolIndex += startScroolIndex;
 		}
-		logger.info("getLogInfosByScroll startIndex is " + startIndex);
+		logger.info("getLogInfosByScroll startIndex is " + startScroolIndex);
 		//返回行数默认1000行
 		int rowcount = 1000;
 		if(null == paramJson.getString("rowCount")){
@@ -129,9 +133,8 @@ public class DataFactory {
 
 		LogReader reader =LogReaderUtil.getReader(getLogFileObject(logIndex));
 		List<JSONObject> jsonList = new ArrayList<JSONObject>();
-		jsonList = getResultList(jsonList,reader,startIndex,rowcount);
-		
-		logger.info("jsonList.size:"+jsonList.size());	
+		jsonList = getResultList(jsonList,reader,startScroolIndex,rowcount);
+				
 		JSONObject resultObj = new JSONObject();
 		resultObj.put("data", jsonList);
 		resultObj.put("count", jsonList.size());
@@ -146,24 +149,25 @@ public class DataFactory {
 	 * 
 	 * @return
 	 */
-	private List<JSONObject> getResultList(List<JSONObject> jsonList,LogReader reader,int startIndex, int returnNum){
-		
+	private List<JSONObject> getResultList(List<JSONObject> resultList,LogReader reader,int startIndex, int returnNum){
+		List<JSONObject> tempList = new ArrayList<JSONObject>();
 		List<Log> logs = reader.getLogList(startIndex, returnNum);
 		JSONObject temp;
 		for(Log aLog : logs){	
 			temp = JSONObject.parseObject(JSONObject.toJSONString(aLog));
 			temp.put("time", sdf.format(new Date((long) temp.get("date"))));
-			jsonList.add(temp);			
+			tempList.add(temp);			
 		}
-		logger.info("json[0]: "+jsonList.get(0));		
-		jsonList = dataFilter(jsonList, returnNum);
-		if(jsonList.size()>=returnNum || logs.size()<returnNum){
-			return jsonList;
+				
+		resultList.addAll(dataFilter(tempList, returnNum));
+		logger.info("jsonList size: "+resultList.size());
+		if(resultList.size()>=returnNum || logs.size()<returnNum){
+			return resultList;
 		}else
 		{
-			getResultList(jsonList,reader, startIndex, returnNum);
+			getResultList(tempList,reader, startIndex, returnNum);
 		}
-		return jsonList;
+		return resultList;
 	}
 	
 	
@@ -184,38 +188,38 @@ public class DataFactory {
 			//所有过滤均采用反向判断，即：有一项不符合条件就跳出循环，寻找下一条
 			for(JSONObject tempJson : sourceList){		
 				
-				if(null!=startTime && !"".equals(startTime)){				
+				if(null!=startTime && !"".equals(startTime) && null!=tempJson.getString("time")){				
 					if(sdf.parse(tempJson.getString("time")).before(sdf.parse(startTime))){
-						break;
+						continue;
 					}							
 				}
-				if(null!=endTime && !"".equals(endTime)){				
+				if(null!=endTime && !"".equals(endTime)  && null!=tempJson.getString("time")){				
 					if(sdf.parse(tempJson.getString("time")).after(sdf.parse(endTime))){
-						break;
+						continue;
 					}					
 				}
-				if(null!=prossNo && !"".equals(prossNo)){
+				if(null!=prossNo && !"".equals(prossNo) && null!=tempJson.getString("pid")){
 					
-					if(!prossNo.equals(tempJson.getString("prossNo"))){
-						break;
+					if(!prossNo.equals(tempJson.getString("pid"))){
+						continue;
 					}							
 				}
-				if(null!=pre && !"".equals(pre)){
+				if(null!=pre && !"".equals(pre) && null!=tempJson.getString("pre")){
 					
 					if(!pre.equals(tempJson.getString("pre"))){
-						break;
+						continue;
 					}							
 				}
-				if(null!=level && !"".equals(level)){
+				if(null!=level && !"".equals(level) && null!=tempJson.getString("level")){
 					
-					if(!level.equals(tempJson.getString("level"))){
-						break;
+					if(!level.equals(tempJson.getString("level").trim())){
+						continue;
 					}							
 				}
-				if(null!=context && !"".equals(context)){
+				if(null!=context && !"".equals(context) && null!=tempJson.getString("log")){
 					
-					if(!tempJson.getString("context").matches(context)){
-						break;
+					if(tempJson.getString("log").indexOf(context)<0){
+						continue;
 					}							
 				}
 									
