@@ -83,6 +83,7 @@ function funcsrcoll(obj, count)
     var idx =  parseInt(obj.id.split('log_display_')[1]);
 	if(logScrollFlag && idx<count){
 		const ac = document.querySelector('#logPriview');
+		const lcFirst = ac.querySelector('#log_display_1');
 		const lc = ac.querySelector('#log_display_' + idx);
 		const rc = ac.querySelector('#log_display_' + (idx+1));
 		
@@ -100,6 +101,12 @@ function funcsrcoll(obj, count)
 			}
 		}else{
 			rc.scrollTop =  0;
+		}
+		
+		if ((lcFirst.scrollHeight - lcFirst.scrollTop) == lcFirst.clientHeight) {
+			currentData = queryFirst(rowCount);
+			queryUrl = 'dataFactory/getLogInfosByScroll';
+			initLogContext(currentData, queryUrl);
 		}
 	}
 }
