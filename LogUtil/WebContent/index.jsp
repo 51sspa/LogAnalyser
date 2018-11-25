@@ -37,10 +37,11 @@
 						style="margin-top: 7px; float: left;">日志级别： </label>
 					<div style="width: 120px; position: relative; float: left;">
 						<select id="logLevel" class="form-control">
-							<option>Info</option>
-							<option>Debug</option>
-							<option>Warn</option>
-							<option>Error</option>
+							<option>请选择...</option>
+							<option>INFO</option>
+							<option>DEBUG</option>
+							<option>WARN</option>
+							<option>ERROR</option>
 						</select>
 					</div>
 				</div>
@@ -59,7 +60,7 @@
 						style="margin-top: -7px; float: left; margin-left: 10px;">起始时间：
 					</label>
 					<div
-						style="width: 120px; position: relative; float: left; margin-top: -15px;">
+						style="width: 150px; position: relative; float: left; margin-top: -15px;">
 						<input class="form-control" id="startTime" type="text"
 							placeholder="输入起始时间">
 					</div>
@@ -69,7 +70,7 @@
 						style="margin-top: -7px; float: left; margin-left: 10px;">结束时间：
 					</label>
 					<div
-						style="width: 120px; position: relative; float: left; margin-top: -15px;">
+						style="width: 150px; position: relative; float: left; margin-top: -15px;">
 						<input class="form-control" id="endTime" type="text"
 							placeholder="输入结束时间">
 					</div>

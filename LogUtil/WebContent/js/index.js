@@ -1,3 +1,5 @@
+var rowCount = 1000;
+
 $(function() {
 	//默认文件列表
 	var currentData = null;
@@ -42,7 +44,7 @@ $(function() {
 		fileName1 = "";
 		fileName2 = "";
 		fileName3 = "";
-		data = [];
+		var data = [];
 		
 		if ($("#file1") && $("#file1").val()) {
 			fileName1 = $("#file1").val();
@@ -51,6 +53,7 @@ $(function() {
 			file["logName"] = fileName1;
 			file["logPath"] = fileName1;
 			file["logType"] = "java";
+			file["rowCount"] = rowCount;
 			data.push(file);
 		}
 		if ($("#file2") && $("#file2").val()) {
@@ -60,6 +63,7 @@ $(function() {
 			file["logName"] = fileName2;
 			file["logPath"] = fileName2;
 			file["logType"] = "java";
+			file["rowCount"] = rowCount;
 			data.push(file);
 		}
 		if ($("#file3") && $("#file3").val()) {
@@ -69,6 +73,7 @@ $(function() {
 			file["logName"] = fileName3;
 			file["logPath"] = fileName3;
 			file["logType"] = "C++";
+			file["rowCount"] = rowCount;
 			data.push(file);
 		}
 		currentData = data;
@@ -79,36 +84,47 @@ $(function() {
 	$('#importFile').on('hidden.bs.modal', getFileContent);
 
 	$("#exeFilter").click(function() {
-		console.log("exeFilter click" + new Date());
-		var logLevel = $("#logLevel").val();
-		var processName = $("#processName").val();
-		var startTime = $("#startTime").val();
-		var endTime = $("#endTime").val();
-		var key = $("#key").val();
-		var	baseParas = {};
-
-		if(startTime){
-			baseParas["startTime"] = startTime;
+		if(!fileName1) {
+			alert("请先加载文件!");
 		}
-		if(endTime){
-			baseParas["endTime"] = endTime;
-		}
-		if(processName){
-			baseParas["prossNo"] = processName;
-		}
-		if(logLevel){
-			baseParas["level"] = logLevel;
-		}
-		if(key){
-			baseParas["context"] = key;
-		}
+		var data = [];
 		
-		currentData = baseParas;
+		var param1 = getqueryParams();
+		param1["logIndex"] = 1;
+		param1["logPath"] = fileName1;
+		data.push(param1);
 		
+		var param2 = getqueryParams();
+		param2["logIndex"] = 2;
+		param2["logPath"] = fileName2;
+		data.push(param2);
+		
+		var param3 = getqueryParams();
+		param3["logIndex"] = 3;
+		param3["logPath"] = fileName3;
+		data.push(param3);
+		
+		currentData = data;
 		queryUrl = 'dataFactory/getLogInfosByCon';
 		
 		$('#onLodding').modal('show');
 	});
+	
+	var getqueryParams = function() {
+		var	baseParas = {};
+		baseParas["startTime"] = $("#startTime").val();
+		baseParas["endTime"] = $("#endTime").val();
+		baseParas["prossNo"] = $("#processName").val();
+		var level = $("#logLevel").val();
+		if(level == "请选择...") {
+			level = "";
+		}
+		baseParas["level"] = level;
+		baseParas["context"] = $("#key").val();
+		baseParas["rowCount"] = rowCount;
+		
+		return baseParas;
+	}
 });
 
 function apiPost(url, params, successCallback, failCallback) {

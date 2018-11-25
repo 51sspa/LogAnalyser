@@ -61,12 +61,8 @@ function initLogContext(data, url){
 	
 	$("#logPriview").empty();
 	for(var i=0; i<data.length; i++){
-		var oneData = data[i];
-		$("#logPriview").append(preInitDIV(oneData, data.length));
-		
-		var params = baseParas;
-		params["logIndex"] = oneData.logIndex;
-		params["rowCount"] = 200;
+		var params = data[i];
+		$("#logPriview").append(preInitDIV(params, data.length));
 		
 		apiPost(url, params, function(json){
 			if('success' == json.result){
