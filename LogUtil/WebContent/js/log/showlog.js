@@ -59,8 +59,6 @@ function initLogContext(data){
 		return result;
 	};
 	
-	var url = 'dataFactory/getLogInfosByScroll';
-	
 	$("#logPriview").empty();
 	for(var i=0; i<data.length; i++){
 		var oneData = data[i];
@@ -76,10 +74,10 @@ function initLogContext(data){
 			}else{
 				console.error("error load data");
 			}
-			$('#onLodding').modal('hide');
 		});
 	}
-
+	
+	$('#onLodding').modal('hide');
 }
 
 //div 滚动监听
