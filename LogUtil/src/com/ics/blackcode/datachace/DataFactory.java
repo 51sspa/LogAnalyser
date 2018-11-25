@@ -68,16 +68,15 @@ public class DataFactory {
 	 */
 	@RequestMapping("/getLogInfosByCon")
 	public void getLogInfosByCon(HttpServletRequest request, HttpServletResponse response){
-		
-		JSONObject paramJson = jsonUtil.getParamters(request);
-		logIndex = paramJson.getString("logIndex");
+		logger.info("begin to getLogInfosByCon。");
+		JSONObject paramJson = jsonUtil.getParamters(request);	
 		startTime = paramJson.getString("startTime");
 		endTime = paramJson.getString("endTime");
 		prossNo = paramJson.getString("prossNo");
-		level = paramJson.getString("level");
+		level = paramJson.getString("level").toUpperCase();
 		pre = paramJson.getString("pre");
 		context = paramJson.getString("context");	
-				
+		logger.info("getLogInfosByCon startTime："+startTime+" endTime:"+ endTime +" prossNo:"+ prossNo +" level:"+ level + " pre:"+ pre + " context:"+ context);		
 		JSONObject fileJson = new JSONObject();
 		
 		List<JSONObject> jsonList = new ArrayList<JSONObject>();
@@ -99,7 +98,8 @@ public class DataFactory {
 		resultObj.put("data", fileJson);
 		resultObj.put("result", "success");
 
-		jsonUtil.out(response, resultObj.toJSONString());		
+		jsonUtil.out(response, resultObj.toJSONString());	
+		logger.info("end to getLogInfosByCon。");
 	}
 	
 	
@@ -114,7 +114,7 @@ public class DataFactory {
 	 */
 	@RequestMapping("/getLogInfosByScroll")
 	public void getLogInfosByScroll(HttpServletRequest request, HttpServletResponse response){
-		
+		logger.info("begin to getLogInfosByScroll。");
 		JSONObject paramJson = jsonUtil.getParamters(request);
 		logIndex = paramJson.getString("logIndex");
 		//读取行数默认第一行
@@ -124,6 +124,7 @@ public class DataFactory {
 		}else{
 			startIndex = Integer.parseInt(paramJson.getString("startIndex"));
 		}
+		logger.info("getLogInfosByScroll startIndex is " + startIndex);
 		//返回行数默认1000行
 		int rowcount = 1000;
 		if(null == paramJson.getString("rowCount")){
@@ -131,7 +132,7 @@ public class DataFactory {
 		}else{
 			rowcount = Integer.parseInt(paramJson.getString("rowCount"));
 		}
-			
+		logger.info("getLogInfosByScroll rowcount is " + rowcount);	
 		List<JSONObject> jsonList = new ArrayList<JSONObject>();
 
 		LogReader reader =LogReaderUtil.getReader(getLogFileObject(logIndex));
@@ -153,6 +154,7 @@ public class DataFactory {
 		resultObj.put("result", "success");
 
 		jsonUtil.out(response, resultObj.toJSONString());		
+		logger.info("end to getLogInfosByScroll。");
 	}
 	
 	
@@ -246,7 +248,7 @@ public class DataFactory {
 	@RequestMapping("/getlogFiles")
 	public void getlogFiles(HttpServletRequest request, HttpServletResponse response){	
 		File f = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath().replace("/WEB-INF/classes", "")+"/data/");	
-		logger.info("logpath is:"+f.getPath());
+		logger.info("begin to getlogFiles。logpath is:"+f.getPath());
 		JSONObject resultObj = new JSONObject();
 		if(f.exists() && f.isDirectory()){
 			List<JSONObject> jsonList = new ArrayList<JSONObject>();
@@ -270,6 +272,7 @@ public class DataFactory {
 		}
 		
 		jsonUtil.out(response, resultObj.toJSONString());
+		logger.info("end to getlogFiles。jsonList is:"+resultObj.toJSONString());
 	}
 	
 	 /**
