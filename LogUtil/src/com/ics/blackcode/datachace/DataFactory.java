@@ -82,16 +82,9 @@ public class DataFactory {
 		List<JSONObject> jsonList = new ArrayList<JSONObject>();
 
 		LogReader reader =LogReaderUtil.getReader(getLogFileObject(logIndex));
-		//此处因为有过滤条件，一次取十倍，再从其中取 maxReturnNum 的日志。后面优化
-		List<Log> logs = reader.getLogList(0, maxReturnNum*10);
-		JSONObject temp;
-		for(Log aLog : logs){	
-			temp = JSONObject.parseObject(JSONObject.toJSONString(aLog));
-			temp.put("time", sdf.format(new Date((long) temp.get("date"))));
-			jsonList.add(temp);			
-		}
 		
-		jsonList = dataFilter(jsonList, maxReturnNum);
+		jsonList = getResultList(jsonList,reader,0,maxReturnNum);
+		
 		logger.info("jsonList.size:"+jsonList.size());		
 		
 		JSONObject resultObj = new JSONObject();
@@ -133,19 +126,11 @@ public class DataFactory {
 			rowcount = Integer.parseInt(paramJson.getString("rowCount"));
 		}
 		logger.info("getLogInfosByScroll rowcount is " + rowcount);	
-		List<JSONObject> jsonList = new ArrayList<JSONObject>();
 
 		LogReader reader =LogReaderUtil.getReader(getLogFileObject(logIndex));
-		//此处因为有过滤条件，一次取十倍，再从其中取 maxReturnNum 的日志。后面优化
-		List<Log> logs = reader.getLogList(startIndex, rowcount*10);
-		JSONObject temp;
-		for(Log aLog : logs){	
-			temp = JSONObject.parseObject(JSONObject.toJSONString(aLog));
-			temp.put("time", sdf.format(new Date((long) temp.get("date"))));
-			jsonList.add(temp);			
-		}
-		logger.info("json[0]: "+jsonList.get(0));		
-		jsonList = dataFilter(jsonList, rowcount);
+		List<JSONObject> jsonList = new ArrayList<JSONObject>();
+		jsonList = getResultList(jsonList,reader,startIndex,rowcount);
+		
 		logger.info("jsonList.size:"+jsonList.size());	
 		JSONObject resultObj = new JSONObject();
 		resultObj.put("data", jsonList);
@@ -155,6 +140,30 @@ public class DataFactory {
 
 		jsonUtil.out(response, resultObj.toJSONString());		
 		logger.info("end to getLogInfosByScroll。");
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	private List<JSONObject> getResultList(List<JSONObject> jsonList,LogReader reader,int startIndex, int returnNum){
+		
+		List<Log> logs = reader.getLogList(startIndex, returnNum);
+		JSONObject temp;
+		for(Log aLog : logs){	
+			temp = JSONObject.parseObject(JSONObject.toJSONString(aLog));
+			temp.put("time", sdf.format(new Date((long) temp.get("date"))));
+			jsonList.add(temp);			
+		}
+		logger.info("json[0]: "+jsonList.get(0));		
+		jsonList = dataFilter(jsonList, returnNum);
+		if(jsonList.size()>=returnNum || logs.size()<returnNum){
+			return jsonList;
+		}else
+		{
+			getResultList(jsonList,reader, startIndex, returnNum);
+		}
+		return jsonList;
 	}
 	
 	
