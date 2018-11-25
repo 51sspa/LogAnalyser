@@ -106,7 +106,7 @@ function funcsrcoll(obj, count)
 		if ((lcFirst.scrollHeight - lcFirst.scrollTop) == lcFirst.clientHeight) {
 			currentData = queryFirst(rowCount);
 			queryUrl = 'dataFactory/getLogInfosByScroll';
-			initLogContext(currentData, queryUrl);
+			$('#onLodding').modal('show');
 		}
 	}
 }
