@@ -26,7 +26,7 @@ apiGet(url_tlp, function(json){
 //日志查询的基本过滤参数集合
 var baseParas = {};
 
-function initLogContext(data){
+function initLogContext(data, url){
 	console.log(new Date()+"****initLogContext");
 	//单行日志渲染DIV
 	var oneStaticDiv = '<div class="log_display"><p class="log_path">#LOGPATH#</p><pre id="log_display_#INDEX#" onscroll="funcsrcoll(this, #COUNT#)"></pre></div>'; 
