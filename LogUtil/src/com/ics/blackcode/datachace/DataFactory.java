@@ -42,7 +42,7 @@ public class DataFactory {
 	/** 内容关键字  */
 	private static String context = "";
 	/** 最大返回行数 */
-	private static int maxReturnNum = 1000;
+	private static int maxReturnNum = 500;
 	/** 查询文件名  */
 	private static String theFileName = "";
 	
@@ -82,7 +82,7 @@ public class DataFactory {
 		level = paramJson.getString("level").toUpperCase();
 		context = paramJson.getString("context");	
 		theFileName = paramJson.getString("logPath");	
-		logger.info("getLogInfosByCon startTime："+startTime+" endTime:"+ endTime +" prossNo:"+ prossNo +" level:"+ level + " pre:"+ pre + " context:"+ context);		
+		logger.info("getLogInfosByCon startTime："+startTime+" endTime:"+ endTime +" tname:"+ prossNo +" level:"+ level + " pre:"+ pre + " context:"+ context);		
 				
 		List<JSONObject> jsonList = new ArrayList<JSONObject>();
 
@@ -126,10 +126,10 @@ public class DataFactory {
 			startScroolIndex += startScroolIndex;
 		}
 		logger.info("getLogInfosByScroll startIndex is " + startScroolIndex);
-		//返回行数默认1000行
-		int rowcount = 1000;
+		//返回行数默认500行
+		int rowcount = 500;
 		if(null == paramJson.getString("rowCount")){
-			rowcount = 1000;
+			rowcount = 500;
 		}else{
 			rowcount = Integer.parseInt(paramJson.getString("rowCount"));
 		}
@@ -202,9 +202,9 @@ public class DataFactory {
 						continue;
 					}					
 				}
-				if(null!=prossNo && !"".equals(prossNo) && null!=tempJson.getString("pid")){
+				if(null!=prossNo && !"".equals(prossNo) && null!=tempJson.getString("tname")){
 					
-					if(!prossNo.equals(tempJson.getString("pid"))){
+					if(!prossNo.equals(tempJson.getString("tname"))){
 						continue;
 					}							
 				}
@@ -226,7 +226,7 @@ public class DataFactory {
 						continue;
 					}							
 				}
-									
+				tempJson.put("location", returnList.size()+1);			
 				returnList.add(tempJson);
 				jsonNum++;
 				if(jsonNum==maxLimit){
