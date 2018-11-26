@@ -1,4 +1,4 @@
-var rowCount = 1000;
+var rowCount = 500;
 var currentData = null;
 var queryUrl = "";
 
