@@ -43,6 +43,8 @@ public class DataFactory {
 	private static String context = "";
 	/** 最大返回行数 */
 	private static int maxReturnNum = 1000;
+	/** 查询文件名  */
+	private static String theFileName = "";
 	
 	//读取行数默认第一行
 	private int startScroolIndex = 0;
@@ -79,11 +81,12 @@ public class DataFactory {
 		prossNo = paramJson.getString("prossNo");
 		level = paramJson.getString("level").toUpperCase();
 		context = paramJson.getString("context");	
+		theFileName = paramJson.getString("logPath");	
 		logger.info("getLogInfosByCon startTime："+startTime+" endTime:"+ endTime +" prossNo:"+ prossNo +" level:"+ level + " pre:"+ pre + " context:"+ context);		
 				
 		List<JSONObject> jsonList = new ArrayList<JSONObject>();
 
-		LogReader reader =LogReaderUtil.getReader(getLogFileObject(logIndex));
+		LogReader reader =LogReaderUtil.getReader(getLogFileObject(theFileName));
 		
 		jsonList = getResultList(jsonList,reader,0,maxReturnNum);
 				
@@ -112,6 +115,7 @@ public class DataFactory {
 		logger.info("begin to getLogInfosByScroll。");
 		JSONObject paramJson = jsonUtil.getParamters(request);
 		logIndex = paramJson.getString("logIndex");
+		theFileName = paramJson.getString("logPath");
 		if("1".equals(logIndex))
 		{
 			if(null == paramJson.getString("startIndex")){
@@ -131,7 +135,7 @@ public class DataFactory {
 		}
 		logger.info("getLogInfosByScroll rowcount is " + rowcount);	
 
-		LogReader reader =LogReaderUtil.getReader(getLogFileObject(logIndex));
+		LogReader reader =LogReaderUtil.getReader(getLogFileObject(theFileName));
 		List<JSONObject> jsonList = new ArrayList<JSONObject>();
 		jsonList = getResultList(jsonList,reader,startScroolIndex,rowcount);
 				
@@ -243,9 +247,12 @@ public class DataFactory {
 	 * @param index 日志标识
 	 * @return String
 	 */
-	private String getLogFileObject(String index){
+	private String getLogFileObject(String filename){
+		if(null==logFileList || 0==logFileList.size()){
+			getlogFiles(null,null);
+		}
 		for(JSONObject fileObj : logFileList){
-			if(index.equals(fileObj.getString("logIndex"))){
+			if(filename.indexOf(fileObj.getString("logName"))>-1){
 				return fileObj.getString("logPath");
 			}
 		}
@@ -259,8 +266,8 @@ public class DataFactory {
 	 * @return 日志文件信息
 	 */
 	@RequestMapping("/getlogFiles")
-	public void getlogFiles(HttpServletRequest request, HttpServletResponse response){	
-		File f = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath().replace("/WEB-INF/classes", "")+"/data/");	
+	public void getlogFiles(HttpServletRequest request, HttpServletResponse response){
+		File f = new File(System.getProperty("catalina.home")+"/data/");	
 		logger.info("begin to getlogFiles。logpath is:"+f.getPath());
 		JSONObject resultObj = new JSONObject();
 		if(f.exists() && f.isDirectory()){
