@@ -93,6 +93,55 @@
 			<div class="mycontent" id="logPriview"></div>
 		</div>
 	</div>
+	
+	<!-- 导入日志 -->
+	<div class="modal fade" id="importLog" tabindex="-1" role="dialog"
+		aria-labelledby="logLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="content-box-wrapper" id="logLabel">选择文件</h4>
+				</div>
+				<div class="border-top border-red modal-body"
+					style="padding-bottom: 150px;">
+					<div class="form-group" style="float: left;">
+						<label class="control-label"
+							style="margin-top: 7px; float: left;">文件1</label>
+						<div class="col-sm-11">
+							<input id="file1" name="file1" type="file" class="file"
+								data-show-preview="false" data-show-upload="false"
+								data-show-cancel="false">
+						</div>
+					</div>
+					<div class="form-group" style="float: left;">
+						<label class="control-label"
+							style="margin-top: 7px; float: left;">文件2</label>
+						<div class="col-sm-11">
+							<input id="file2" name="file2" type="file" class="file"
+								data-show-preview="false" data-show-upload="false"
+								data-show-cancel="false">
+						</div>
+					</div>
+					<div class="form-group" style="float: left;">
+						<label class="control-label"
+							style="margin-top: 7px; float: left;">文件3</label>
+						<div class="col-sm-11">
+							<input id="file3" name="file3" type="file" class="file"
+								data-show-preview="false" data-show-upload="false"
+								data-show-cancel="false">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button id="logConfim" type="button" class="btn btn-primary">确定</button>
+					<button id="logCancel" type="button" class="btn btn-default"
+						data-dismiss="modal">取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- 导入日志 -->
 	<div class="modal fade" id="importFile" tabindex="-1" role="dialog"

@@ -1,14 +1,8 @@
 var rowCount = 1000;
-var fileName1 = "";
-var fileName2 = "";
-var fileName3 = "";
 var currentData = null;
 var queryUrl = "";
 
 $(function() {
-	fileName1 = "";
-	fileName2 = "";
-	fileName3 = "";
 	currentData = null;
 	queryUrl = "";
 	var isOK = false;
@@ -29,53 +23,48 @@ $(function() {
 	});
 	
 	$("#importBtn").click(function() {
-		
-		apiPost('dataFactory/getlogFiles', null, function(json){
-			if('success'==json.result){
-				$('#importFile').modal('show');
-				isOK = false;
-				var files = json.data;
-				for (var i = 0;i < 3; i++) {
-					if (files[i]) {
-						$('#file' + (i + 1)).val(files[i].logPath);
-					}
-				}
-			}else {
-				console.error("load data error!");
-			}
-		});
+		isOK = false;
+		$('#importLog').modal('show');
 	});
 	
 	// 确定
-	$("#okBtn").click(function() {
+	$("#logConfim").click(function() {
 		isOK = true;
 		currentData = queryFirst(0);
 		queryUrl = 'dataFactory/getLogInfosByScroll';
-		$('#importFile').modal('hide');
+		$('#importLog').modal('hide');
 	});
 	
-	$('#importFile').on('hidden.bs.modal', getFileContent);
+	$('#importLog').on('hidden.bs.modal', getFileContent);
 
 	$("#exeFilter").click(function() {
-		if(!fileName1) {
+		var fileName1 = $("#file1").val();
+		var fileName2 = $("#file2").val();
+		var fileName3 = $("#file3").val();
+		if(!fileName1 && !fileName2 && !fileName3) {
 			alert("请先加载文件!");
+			return;
 		}
 		var data = [];
-		
-		var param1 = getqueryParams();
-		param1["logIndex"] = 1;
-		param1["logPath"] = fileName1;
-		data.push(param1);
-		
+		var index = 0;
+		if(fileName1) {
+			index ++;
+			var param1 = getqueryParams();
+			param1["logIndex"] = index;
+			param1["logPath"] = fileName1;
+			data.push(param1);
+		}
 		if(fileName2) {
+			index ++;
 			var param2 = getqueryParams();
-			param2["logIndex"] = 2;
+			param2["logIndex"] = index;
 			param2["logPath"] = fileName2;
 			data.push(param2);
 		}
 		if(fileName3) {
+			index ++;
 			var param3 = getqueryParams();
-			param3["logIndex"] = 3;
+			param3["logIndex"] = index;
 			param3["logPath"] = fileName3;
 			data.push(param3);
 		}
@@ -89,11 +78,13 @@ $(function() {
 
 var queryFirst = function(num) {
 	var data = [];
+	var index = 0;
 	
 	if ($("#file1") && $("#file1").val()) {
+		index++;
 		fileName1 = $("#file1").val();
 		var file = {};
-		file["logIndex"] = 1;
+		file["logIndex"] = index;
 		file["startIndex"] = num;
 		file["logName"] = fileName1;
 		file["logPath"] = fileName1;
@@ -102,9 +93,10 @@ var queryFirst = function(num) {
 		data.push(file);
 	}
 	if ($("#file2") && $("#file2").val()) {
+		index++;
 		fileName2 = $("#file2").val();
 		var file = {};
-		file["logIndex"] = 2;
+		file["logIndex"] = index;
 		file["startIndex"] = num;
 		file["logName"] = fileName2;
 		file["logPath"] = fileName2;
@@ -113,9 +105,10 @@ var queryFirst = function(num) {
 		data.push(file);
 	}
 	if ($("#file3") && $("#file3").val()) {
+		index++;
 		fileName3 = $("#file3").val();
 		var file = {};
-		file["logIndex"] = 3;
+		file["logIndex"] = index;
 		file["startIndex"] = num;
 		file["logName"] = fileName3;
 		file["logPath"] = fileName3;
